@@ -1,31 +1,33 @@
 {
-  "name": "shopsmart_e-commerce_and_shopping",
+  "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "directories": {
-    "test": "tests"
-  },
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.3",
+    "argon2": "^0.41.1",
+    " ": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.0",
-    "nodemailer": "^6.10.0",
+    "mongoose": "^8.9.5",
+    "nodemailer": "^6.9.16",
     "nodemon": "^3.1.9",
-    "path": "^0.12.7",
-    "razorpay": "^2.9.5"
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "prettier": "^3.4.2"
   }
 }
