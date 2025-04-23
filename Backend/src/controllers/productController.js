@@ -379,6 +379,25 @@ const getTotalCartPrice = async (req, res) => {
   }
 };
 
+const clearUserCart = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { cart: [] }, // Set cart to empty array
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "Cart cleared successfully", user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ message: "Error clearing cart", error: error.message });
+  }
+};
 export {
   productInsert,
   getProductsByCategory,
@@ -389,4 +408,5 @@ export {
   wishlistProduct,
   removewishlist,
   getTotalCartPrice,
+  clearUserCart,
 };
