@@ -6,9 +6,9 @@ import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 import { sendOtpEmail } from "../services/emailService.js";
 
 const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
+  let { username, email, password, role} = req.body;
+  role=role || "customer"
+  if (!username || !email || !password || !role) {
     return res.status(400).json({
       message: "please enter in missing",
     });
@@ -22,6 +22,7 @@ const registerUser = async (req, res) => {
     username: username,
     email: email,
     password: hashPassword,
+    role:role
   };
 
   try {
