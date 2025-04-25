@@ -378,12 +378,59 @@ const getTotalCartPrice = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+const getCart = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    const userFetch = await user.findById(userId).populate({
+      path: "cart.productId",
+      model: "Product",
+      select: "title price images category stock",
+    });
+
+    if (!userFetch) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (!userFetch.cart.length) {
+      return res.status(200).json({ message: "Cart is empty", cart: [] });
+    }
+
+    const cartItems = userFetch.cart.map((item) => {
+      if (item.productId) {
+        return {
+          productId: item.productId._id,
+          title: item.productId.title,
+          price: item.productId.price,
+          quantity: item.quantity,
+          image: item.productId.images?.[0],
+          category: item.productId.category,
+          stock: item.productId.stock,
+        };
+      }
+      return null;
+    }).filter(item => item !== null);
+
+    return res.status(200).json({
+      message: "Cart fetched successfully",
+      cart: cartItems,
+    });
+
+  } catch (error) {
+    console.error("Error fetching cart:", error.message);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
 const clearUserCart = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const updatedUser = await User.findByIdAndUpdate(
+    const updatedUser = await user.findByIdAndUpdate(
       userId,
       { cart: [] }, // Set cart to empty array
       { new: true }
@@ -409,4 +456,5 @@ export {
   removewishlist,
   getTotalCartPrice,
   clearUserCart,
+  getCart,
 };
