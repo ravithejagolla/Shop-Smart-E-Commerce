@@ -4,6 +4,7 @@ import { Cart } from './Pages/Cart.jsx';
 import { Home } from './Pages/Home.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
+import OrderSuccess from './Pages/Ordersuccess.jsx';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/order-success" element={<OrderSuccess/>} />
     </Routes>
   );
 }

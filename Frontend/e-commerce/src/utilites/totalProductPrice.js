@@ -1,3 +1,8 @@
+// utilites/totalProductPrice.js
 
-
-export const TotalAmmount=(cart)=>cart?.length>0&&cart.reduce((acc,cur)=>acc+cur.price,0)
+export const TotalAmmount = (cart) => {
+    return cart.reduce((total, item) => {
+      return total + item.price * (item.quantity || 1);
+    }, 0);
+  };
+  

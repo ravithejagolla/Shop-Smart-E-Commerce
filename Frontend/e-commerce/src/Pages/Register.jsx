@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault();
   
     try {
-      const res = await axios.post("http://localhost:3000/auth/register", {
+      const res = await axios.post("https://shop-smart-e-commerce.onrender.com/auth/register", {
         username: name,  
         email,
         password,
