@@ -9,24 +9,12 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const onSearchClick = async () => {
+  const onSearchSubmit = (e) => {
+    e.preventDefault(); // prevent page reload on form submit
     if (searchText.trim() !== "") {
-      try {
-        // Fetch products based on search query
-        const response = await fetch(
-          `https://shop-smart-e-commerce.onrender.com/product/search?query=${searchText}`
-        );
-        const data = await response.json();
-
-        // You could store the results in your state or navigate to a search results page
-        console.log("Search results:", data);
-
-        // Navigate to a search results page (optional)
-        navigate(`/search?query=${searchText}`);
-        setSearchText(""); // Clear input after search
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      }
+      // Navigate to the SearchResultsPage with the search query
+      navigate(`/search?keyword=${searchText}`);
+      setSearchText(""); // Clear search input after navigating
     }
   };
 
@@ -41,7 +29,8 @@ const Navbar = () => {
         </h1>
       </div>
 
-      <div className="ml-10 flex items-center gap-2">
+      {/* Search Input */}
+      <form onSubmit={onSearchSubmit} className="ml-10 flex items-center gap-2">
         <input
           type="text"
           value={searchText}
@@ -50,39 +39,25 @@ const Navbar = () => {
           className="px-4 py-2 rounded-md text-black focus:outline-none"
         />
         <button
-          onClick={onSearchClick}
+          type="submit"
           className="bg-white text-green-700 font-semibold py-2 px-4 rounded-md hover:bg-gray-200 transition"
         >
           Search
         </button>
-      </div>
+      </form>
 
+      {/* Navigation Icons */}
       <nav className="ml-auto flex items-center gap-6">
-        <span
-          onClick={() => navigate("/wishlist")}
-          className="material-symbols-outlined text-4xl cursor-pointer"
-        >
+        <span onClick={() => navigate("/wishlist")} className="material-symbols-outlined text-4xl cursor-pointer">
           favorite
         </span>
-
-        <span
-          onClick={() => navigate("/cart")}
-          className="material-symbols-outlined text-4xl cursor-pointer"
-        >
+        <span onClick={() => navigate("/cart")} className="material-symbols-outlined text-4xl cursor-pointer">
           shopping_cart
         </span>
-
-        <span
-          onClick={() => navigate("/login")}
-          className="text-lg cursor-pointer hover:underline"
-        >
+        <span onClick={() => navigate("/login")} className="text-lg cursor-pointer hover:underline">
           Login
         </span>
-
-        <span
-          onClick={() => navigate("/register")}
-          className="text-lg cursor-pointer hover:underline"
-        >
+        <span onClick={() => navigate("/register")} className="text-lg cursor-pointer hover:underline">
           Register
         </span>
       </nav>
