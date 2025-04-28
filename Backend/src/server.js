@@ -6,6 +6,7 @@ import { productRoutes } from "./routes/productRoutes.js";
 import "dotenv/config";
 import { db } from "./config/db.js";
 import { paymentRoutes } from "./routes/paymentRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use(cors());
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
-app.use("/payment",paymentRoutes)
+app.use("/payment",paymentRoutes);
+app.use("/orders", orderRoutes);
 
 // database connection
 db()
