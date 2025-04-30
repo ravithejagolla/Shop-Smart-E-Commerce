@@ -1,4 +1,5 @@
 import { UseCart } from "../../context/cart-context";
+import QuantityButton from "../QuantityButton";
 
 export const HorizontalCard = ({ product }) => {
   // Accessing cart functions from context
@@ -7,29 +8,27 @@ export const HorizontalCard = ({ product }) => {
   return (
     <div className="card flex flex-col bg-white shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 w-f h-[450px]">
       <div className="card-image w-full h-50 bg-gray-200">
-        <img className="object-cover w-full h-full" src={product.images[0]} alt="product" />
+        <img
+          className="object-cover w-full h-full"
+          src={product.images[0]}
+          alt="product"
+        />
       </div>
       <div className="card-content p-4 flex flex-col justify-between flex-1">
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">{product.title}</h2>
+        <h2 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
+          {product.title}
+        </h2>
 
         {/* Price */}
         <p className="text-gray-600 font-medium mb-4">Rs. {product.price}</p>
         <div className="quantity-container flex gap-3 mb-3">
           <p>Quantity</p>
-          <div className="quantity-controls text-1/2xl">
-            <button
-              onClick={() => handleDecrement(product.id)}
-              disabled={product.quantity === 1}
-              className="text-gray-500"
-            >
-              -
-            </button>
-            <input type="number" value={product.quantity} className="w-10 text-gray-700" readOnly />
-            <button onClick={() => handleIncrement(product.id)} className="text-gray-500">
-              +
-            </button>
-          </div>
+          <QuantityButton
+            product={product}
+            handleDecrement={handleDecrement}
+            handleIncrement={handleIncrement}
+          />
         </div>
         <div className="cta-btn d-flex gap">
           <div className="cta-btn">

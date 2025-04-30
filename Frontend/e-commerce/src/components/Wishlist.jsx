@@ -17,7 +17,7 @@ export const Wishlist = () => {
     fetchWishlist();
   }, []);
 
-  // Function to fetch wishlist data from backend and local storage
+  // Function to fetch wishlist data
   const fetchWishlist = async () => {
     setIsLoading(true);
     setError(null);
@@ -27,46 +27,39 @@ export const Wishlist = () => {
       const token =
         localStorage.getItem("token") || sessionStorage.getItem("token");
 
+      // First try to get server wishlist if logged in
       if (token) {
         try {
-          await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
-            { productId: product.id },
+          // This endpoint might be different depending on your API structure
+          const response = await axios.get(
+            "https://shop-smart-e-commerce.onrender.com/user/wishlist",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }
           );
-          // Fetch wishlist from backend (need to implement a GET endpoint for wishlist)
-          // Since the backend doesn't appear to have a direct endpoint to get wishlist items,
-          // we would need to add one or use another approach
 
-          // For now, we'll use local storage as a fallback
-          const localWishlist = localStorage.getItem("wishlist");
-          if (localWishlist) {
-            setWishlistItems(JSON.parse(localWishlist));
-          } else {
-            setWishlistItems([]);
+          if (response.data && response.data.length > 0) {
+            setWishlistItems(response.data);
+            setIsLoading(false);
+            return;
           }
         } catch (error) {
-          console.error("Error fetching wishlist from server:", error);
-          // Fall back to localStorage
-          const localWishlist = localStorage.getItem("wishlist");
-          if (localWishlist) {
-            setWishlistItems(JSON.parse(localWishlist));
-          } else {
-            setWishlistItems([]);
-          }
+          console.log(
+            "Server wishlist not available, falling back to local storage",
+            error
+          );
+          // Continue to use localStorage if API fails
         }
+      }
+
+      // Fall back to localStorage wishlist
+      const localWishlist = localStorage.getItem("wishlist");
+      if (localWishlist) {
+        setWishlistItems(JSON.parse(localWishlist));
       } else {
-        // Not logged in, use localStorage only
-        const localWishlist = localStorage.getItem("wishlist");
-        if (localWishlist) {
-          setWishlistItems(JSON.parse(localWishlist));
-        } else {
-          setWishlistItems([]);
-        }
+        setWishlistItems([]);
       }
     } catch (error) {
       console.error("Error fetching wishlist:", error);
@@ -86,7 +79,7 @@ export const Wishlist = () => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/removeFromWishlist",
+            "https://shop-smart-e-commerce.onrender.com/product/removewishlist",
             { productId },
             {
               headers: {
@@ -122,8 +115,8 @@ export const Wishlist = () => {
       payload: product,
     });
 
-    // Optionally show confirmation
-    alert("Item added to cart!");
+    // Optionally, navigate to cart or show confirmation
+    // navigate('/cart');
   };
 
   // Check if a product is already in the cart
