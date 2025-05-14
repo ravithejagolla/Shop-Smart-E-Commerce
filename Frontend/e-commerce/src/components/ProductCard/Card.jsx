@@ -1,19 +1,16 @@
+// src/components/ProductCard/Card.jsx
 import React, { useState, useEffect } from "react";
-import { UseCart } from "../../context/cart-context";
+import { useNavigate, Link } from "react-router-dom";
+import { useCart } from "../../context/cart-context";
 import { findProduct } from "../../utilites/findProduct";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import QuantityButton from "../QuantityButton";
 
 export const ProductCard = ({ product }) => {
-  const { cart, cartdispatch } = UseCart();
+  const { cart, addToCart } = useCart();
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
-  // const [selectedQuantity, setSelectedQuantity] = useState(1);
-
   const isProductInCart = findProduct(cart, product.id);
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Check if the product is in wishlist on component mount
   useEffect(() => {
@@ -23,7 +20,7 @@ export const ProductCard = ({ product }) => {
   // Function to check if product is already in wishlist
   const checkWishlistStatus = () => {
     try {
-      // First check local storage for wishlist data
+      // Check local storage for wishlist data
       const wishlistData = localStorage.getItem("wishlist");
       if (wishlistData) {
         const wishlist = JSON.parse(wishlistData);
@@ -36,12 +33,7 @@ export const ProductCard = ({ product }) => {
   };
 
   const onAddToCart = () => {
-    !isProductInCart
-      ? cartdispatch({
-          type: "ADD_TO_CART",
-          payload: product,
-        })
-      : Navigate("/cart");
+    !isProductInCart ? addToCart(product) : navigate("/cart");
   };
 
   const onMoveToWishlist = async () => {
@@ -50,43 +42,49 @@ export const ProductCard = ({ product }) => {
     try {
       setIsAddingToWishlist(true);
 
+      // If already in wishlist, navigate to wishlist
+      if (isInWishlist) {
+        navigate("/wishlist");
+        return;
+      }
+
       // Get token
       const token =
         localStorage.getItem("token") || sessionStorage.getItem("token");
 
       if (!token) {
-        // If not logged in, store in localStorage temporarily
+        // If not logged in, store in localStorage only and prompt to login
+        alert("Please login to save items to your wishlist.");
         handleLocalWishlist();
+        navigate("/login");
         return;
       }
 
-      // If already in wishlist, navigate to wishlist
-      if (isInWishlist) {
-        Navigate("/wishlist");
-        return;
-      }
+      // Add to backend wishlist
+      try {
+        await fetch(
+          "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ productId: product.id }),
+          }
+        );
 
-      // Add to wishlist on server
-      const response = await axios.post(
-        "https://shop-smart-e-commerce.onrender.com/product/wishlist",
-        { productId: product.id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        // Also update local wishlist
+        // Also update local wishlist for UI updates
         handleLocalWishlist();
         // Show success message
         alert("Product added to wishlist!");
+      } catch (error) {
+        console.error("Error adding to wishlist:", error);
+        // Handle other errors but still update local wishlist
+        handleLocalWishlist();
       }
     } catch (error) {
       console.error("Error adding to wishlist:", error);
-      // If API fails, still update local wishlist
-      handleLocalWishlist();
     } finally {
       setIsAddingToWishlist(false);
     }
@@ -98,12 +96,6 @@ export const ProductCard = ({ product }) => {
       // Get current wishlist
       const wishlistData = localStorage.getItem("wishlist");
       let wishlist = wishlistData ? JSON.parse(wishlistData) : [];
-
-      // If already in wishlist, navigate to wishlist page
-      if (isInWishlist) {
-        Navigate("/wishlist");
-        return;
-      }
 
       // Add product to wishlist if not already there
       if (!wishlist.some((item) => item.id === product.id)) {
@@ -121,7 +113,7 @@ export const ProductCard = ({ product }) => {
       {/* Product Image */}
       <div className="card-image w-full h-48 bg-gray-50 overflow-hidden relative">
         <img
-          src={product.images[0]}
+          src={product.images?.[0] || "https://via.placeholder.com/300"}
           alt={product.title}
           className="object-contain absolute inset-0 w-full h-full hover:scale-105 transition-transform duration-500"
         />
@@ -171,7 +163,7 @@ export const ProductCard = ({ product }) => {
             <span className="material-symbols-outlined text-sm">
               {isProductInCart ? "shopping_cart_checkout" : "shopping_cart"}
             </span>
-            {isProductInCart ? "Go To Cart" : "Add to Cart"}
+            {isProductInCart ? "Go to Cart" : "Add to Cart"}
           </button>
 
           <button
@@ -202,7 +194,7 @@ export const ProductCard = ({ product }) => {
   );
 };
 
-// Pagination component matching RetailCanvas theme
+// Add Pagination component in the same file for reusability
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   // Generate array of page numbers to display
   const getPageNumbers = () => {

@@ -116,7 +116,7 @@ export const Wishlist = () => {
     });
 
     // Optionally, navigate to cart or show confirmation
-    // navigate('/cart');
+    navigate("/cart");
   };
 
   // Check if a product is already in the cart
@@ -133,7 +133,7 @@ export const Wishlist = () => {
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-gray-900">My Wishlist</h1>
             <Link
-              to="/products"
+              to="/"
               className="text-indigo-600 hover:text-indigo-800 flex items-center"
             >
               <span className="material-symbols-outlined mr-1">arrow_back</span>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -8,7 +8,16 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [redirectPath, setRedirectPath] = useState("/");
   const navigate = useNavigate();
+
+  // Check for redirect path on component mount
+  useEffect(() => {
+    const savedRedirectPath = localStorage.getItem("redirectAfterLogin");
+    if (savedRedirectPath) {
+      setRedirectPath(savedRedirectPath);
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,12 +45,24 @@ export default function Login() {
 
       // Store user data in localStorage for use across the app
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("isAuthenticated", "true");
 
       // Set token for future axios requests
       axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
       setIsLoading(false);
-      navigate("/"); // Redirect after login
+
+      // Navigate to the redirect path (if it exists) and then clear it
+      const redirectTo = localStorage.getItem("redirectAfterLogin") || "/";
+      const shouldProceedToCheckout = redirectTo === "/cart";
+      localStorage.removeItem("redirectAfterLogin");
+
+      // If user was redirected from cart, set a flag to trigger immediate checkout
+      if (shouldProceedToCheckout) {
+        localStorage.setItem("proceedToPayment", "true");
+      }
+
+      navigate(redirectTo);
     } catch (error) {
       setIsLoading(false);
       const message =
@@ -65,12 +86,22 @@ export default function Login() {
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
-            <p className="text-gray-600 mt-2">Sign in to your account</p>
+            <p className="text-gray-600 mt-2">
+              {redirectPath === "/cart"
+                ? "Sign in to complete your checkout"
+                : "Sign in to your account"}
+            </p>
           </div>
 
           {error && (
             <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6">
               <p>{error}</p>
+            </div>
+          )}
+
+          {redirectPath === "/cart" && (
+            <div className="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 mb-6">
+              <p>Please sign in to proceed with your checkout</p>
             </div>
           )}
 
@@ -169,6 +200,8 @@ export default function Login() {
                   </svg>
                   Signing in...
                 </>
+              ) : redirectPath === "/cart" ? (
+                "Sign in to checkout"
               ) : (
                 "Sign in"
               )}
@@ -193,10 +226,15 @@ export default function Login() {
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-12">
-          <h2 className="text-4xl font-bold mb-4">Discover Amazing Products</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            {redirectPath === "/cart"
+              ? "Complete Your Purchase"
+              : "Discover Amazing Products"}
+          </h2>
           <p className="text-xl text-center mb-12 max-w-md">
-            Sign in to access your personalized shopping experience, track
-            orders, and get exclusive deals.
+            {redirectPath === "/cart"
+              ? "Sign in to complete your checkout process and finalize your order."
+              : "Sign in to access your personalized shopping experience, track orders, and get exclusive deals."}
           </p>
 
           <div className="flex space-x-12 mt-8">

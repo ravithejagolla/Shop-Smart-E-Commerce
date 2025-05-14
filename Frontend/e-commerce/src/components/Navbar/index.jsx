@@ -1,42 +1,26 @@
-import { useState, useEffect } from "react";
+// Updated Navbar.jsx to match screenshot design
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { UseCart } from "../../context/cart-context";
+import useCart from "../../context/cart-context";
 
-const Navbar = () => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchText, setSearchText] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
   // Get cart state from context
-  const { cart, cartdispatch } = UseCart();
-  const cartItemCount = cart?.length || 0;
+  const { cart } = useCart();
+
+  // Calculate cart item count correctly, handling undefined cart
+  const cartItemCount = cart && Array.isArray(cart) ? cart.length : 0;
 
   // For wishlist
   const [wishlistItems, setWishlistItems] = useState([]);
   const wishlistCount = wishlistItems?.length || 0;
-
-  // Get user initials
-  const getUserInitials = () => {
-    if (!user || !user.username) return "U";
-
-    // Split the username by spaces to get names
-    const nameParts = user.username.split(" ");
-
-    if (nameParts.length === 1) {
-      // If only one name, return first letter
-      return nameParts[0].charAt(0).toUpperCase();
-    } else {
-      // Return first letter of first name and first letter of last name
-      const firstInitial = nameParts[0].charAt(0);
-      const lastInitial = nameParts[nameParts.length - 1].charAt(0);
-      return (firstInitial + lastInitial).toUpperCase();
-    }
-  };
 
   // Load wishlist and check login status when component mounts or route changes
   useEffect(() => {
@@ -81,6 +65,24 @@ const Navbar = () => {
     }
   };
 
+  // Get user initials
+  const getUserInitials = () => {
+    if (!user || !user.username) return "U";
+
+    // Split the username by spaces to get names
+    const nameParts = user.username.split(" ");
+
+    if (nameParts.length === 1) {
+      // If only one name, return first letter
+      return nameParts[0].charAt(0).toUpperCase();
+    } else {
+      // Return first letter of first name and first letter of last name
+      const firstInitial = nameParts[0].charAt(0);
+      const lastInitial = nameParts[nameParts.length - 1].charAt(0);
+      return (firstInitial + lastInitial).toUpperCase();
+    }
+  };
+
   // Fetch user profile
   const fetchUserProfile = async (token) => {
     try {
@@ -114,11 +116,6 @@ const Navbar = () => {
     sessionStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    // Clear cart in context
-    cartdispatch({
-      type: "CLEAR_CART",
-    });
-
     // Clear wishlist
     localStorage.removeItem("wishlist");
     setWishlistItems([]);
@@ -139,22 +136,6 @@ const Navbar = () => {
   const isActive = (path) => {
     return location.pathname === path;
   };
-
-  // Handle scroll event to change navbar appearance
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -185,14 +166,8 @@ const Navbar = () => {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "py-2 bg-white text-gray-900 shadow-md"
-          : "py-2 bg-blue-600 text-white"
-      }`}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-indigo-600 text-white py-2">
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <div
@@ -202,66 +177,38 @@ const Navbar = () => {
             <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <h1 className="ml-2 text-2xl font-bold">RetailCanvas</h1>
+            <h1 className="ml-2 text-2xl font-bold tracking-tight">
+              RetailCanvas
+            </h1>
           </div>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link
-            to="/"
-            className={`font-medium transition-colors hover:text-blue-300 ${
-              isActive("/") ? "font-bold" : ""
-            }`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/products"
-            className={`font-medium transition-colors hover:text-blue-300 ${
-              isActive("/products") ? "font-bold" : ""
-            }`}
-          >
-            Products
-          </Link>
-          <Link
-            to="/categories"
-            className={`font-medium transition-colors hover:text-blue-300 ${
-              isActive("/categories") ? "font-bold" : ""
-            }`}
-          >
-            Categories
-          </Link>
-        </nav>
-
-        {/* Search & Action Icons */}
-        <div className="flex items-center gap-2 md:gap-4">
-          {/* Search Bar */}
-          <form onSubmit={onSearchSubmit} className="relative hidden md:block">
+        {/* Search Bar (centered on desktop) */}
+        <div className="flex-grow max-w-md mx-4 hidden md:block">
+          <form onSubmit={onSearchSubmit} className="relative w-full">
             <input
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search products..."
-              className={`w-40 lg:w-64 px-4 py-2 pr-10 rounded-md ${
-                isScrolled
-                  ? "bg-gray-100 text-gray-900 focus:bg-white"
-                  : "bg-blue-500 text-white placeholder-blue-200 focus:bg-blue-400"
-              } transition-colors focus:outline-none`}
+              className="w-full px-4 py-2 pr-10 rounded-full bg-indigo-500/75 text-white placeholder-indigo-200 border border-indigo-400 focus:bg-indigo-500 focus:border-white focus:ring-2 focus:ring-indigo-300 transition-all focus:outline-none"
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full hover:bg-indigo-400 text-white"
               aria-label="Search"
             >
               <span className="material-symbols-outlined">search</span>
             </button>
           </form>
+        </div>
 
+        {/* Action Icons */}
+        <div className="flex items-center gap-1 md:gap-3">
           {/* Wishlist Icon */}
           <Link
             to="/wishlist"
-            className="relative p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-200 transition-colors"
+            className="relative p-2 rounded-full hover:bg-indigo-500 transition-colors"
             aria-label="Wishlist"
           >
             <span className="material-symbols-outlined">favorite</span>
@@ -275,7 +222,7 @@ const Navbar = () => {
           {/* Cart Icon */}
           <Link
             to="/cart"
-            className="relative p-2 rounded-full hover:bg-opacity-10 hover:bg-gray-200 transition-colors"
+            className="relative p-2 rounded-full hover:bg-indigo-500 transition-colors"
             aria-label="Cart"
           >
             <span className="material-symbols-outlined">shopping_cart</span>
@@ -288,35 +235,25 @@ const Navbar = () => {
 
           {/* Conditional rendering based on login status */}
           {isLoggedIn ? (
-            <div className="relative profile-dropdown ml-2">
+            <div className="relative profile-dropdown ml-1">
               <button
                 className="flex items-center gap-1"
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                 aria-label="User profile"
                 aria-expanded={isProfileDropdownOpen}
               >
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    isScrolled
-                      ? "bg-blue-600 text-white"
-                      : "bg-white text-blue-600"
-                  }`}
-                >
+                <div className="w-9 h-9 rounded-full flex items-center justify-center bg-white text-indigo-600">
                   {getUserInitials()}
                 </div>
-                <span className="material-symbols-outlined text-sm">
+                <span className="material-symbols-outlined text-sm hidden md:block">
                   {isProfileDropdownOpen ? "expand_less" : "expand_more"}
                 </span>
               </button>
 
               {/* Profile Dropdown */}
               {isProfileDropdownOpen && (
-                <div
-                  className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 ${
-                    isScrolled ? "bg-white" : "bg-white text-gray-900"
-                  } ring-1 ring-black ring-opacity-5 z-50`}
-                >
-                  <div className="px-4 py-2 text-sm text-gray-700 border-b">
+                <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg py-2 bg-white text-gray-900 ring-1 ring-black ring-opacity-5 z-50">
+                  <div className="px-4 py-3 text-sm text-gray-700 border-b">
                     <p className="font-medium">{user?.username || "User"}</p>
                     <p className="text-gray-500 truncate">
                       {user?.email || ""}
@@ -357,9 +294,10 @@ const Navbar = () => {
                       </span>
                     )}
                   </Link>
+                  <div className="h-px bg-gray-200 my-1"></div>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 border-t"
+                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                   >
                     <span className="material-symbols-outlined text-sm mr-2 align-middle">
                       logout
@@ -373,20 +311,14 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link
                 to="/login"
-                className={`px-3 py-1.5 rounded-md font-medium text-sm ${
-                  isScrolled ? "hover:bg-gray-100" : "hover:bg-blue-500"
-                } transition-colors`}
+                className="px-3 py-1.5 rounded-md font-medium text-sm hover:bg-indigo-500 transition-colors"
               >
                 Login
               </Link>
 
               <Link
                 to="/register"
-                className={`px-3 py-1.5 rounded-md font-medium text-sm ml-2 ${
-                  isScrolled
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-white text-blue-600 hover:bg-gray-100"
-                } transition-colors`}
+                className="px-3 py-1.5 rounded-md font-medium text-sm ml-1 bg-white text-indigo-600 hover:bg-gray-100 transition-colors"
               >
                 Register
               </Link>
@@ -395,7 +327,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 ml-1"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -408,27 +340,19 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div
-          className={`md:hidden absolute w-full ${
-            isScrolled ? "bg-white text-gray-900" : "bg-blue-600 text-white"
-          } shadow-lg py-4 px-4 transition-all`}
-        >
+        <div className="md:hidden absolute w-full bg-indigo-600 text-white shadow-lg py-4 px-4 transition-all">
           {/* Mobile Search */}
-          <form onSubmit={onSearchSubmit} className="mb-4 relative">
+          <form onSubmit={onSearchSubmit} className="mb-5 relative">
             <input
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search products..."
-              className={`w-full px-4 py-2 pr-10 rounded-md ${
-                isScrolled
-                  ? "bg-gray-100 text-gray-900"
-                  : "bg-blue-500 text-white placeholder-blue-200"
-              } focus:outline-none`}
+              className="w-full px-4 py-3 pr-10 rounded-md bg-indigo-500 text-white placeholder-indigo-200 border border-indigo-400 focus:outline-none"
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white"
             >
               <span className="material-symbols-outlined">search</span>
             </button>
@@ -436,65 +360,44 @@ const Navbar = () => {
 
           {/* User profile section (mobile) */}
           {isLoggedIn && (
-            <div
-              className={`mb-4 p-3 rounded-md ${
-                isScrolled ? "bg-gray-100" : "bg-blue-500"
-              }`}
-            >
+            <div className="mb-5 p-4 rounded-lg bg-indigo-500">
               <div className="flex items-center gap-3">
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    isScrolled
-                      ? "bg-blue-600 text-white"
-                      : "bg-white text-blue-600"
-                  }`}
-                >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white text-indigo-600">
                   {getUserInitials()}
                 </div>
                 <div>
-                  <p className="font-medium">{user?.username || "User"}</p>
-                  <p
-                    className={`text-sm ${
-                      isScrolled ? "text-gray-600" : "text-blue-100"
-                    }`}
-                  >
-                    {user?.email || ""}
+                  <p className="font-medium text-lg">
+                    {user?.username || "User"}
                   </p>
+                  <p className="text-sm text-indigo-100">{user?.email || ""}</p>
                 </div>
               </div>
             </div>
           )}
 
           {/* Mobile Navigation Links */}
-          <nav className="flex flex-col space-y-4 mb-4">
+          <nav className="flex flex-col mb-4">
             <Link
               to="/"
-              className="py-2 font-medium"
+              className={`py-3 px-3 font-medium rounded-md ${
+                isActive("/") ? "bg-indigo-500" : ""
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <span className="material-symbols-outlined mr-2 align-middle">
+                home
+              </span>
               Home
-            </Link>
-            <Link
-              to="/products"
-              className="py-2 font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Products
-            </Link>
-            <Link
-              to="/categories"
-              className="py-2 font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Categories
             </Link>
           </nav>
 
           {/* Mobile Action Links */}
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col">
             <Link
               to="/wishlist"
-              className="py-2 flex items-center"
+              className={`py-3 px-3 flex items-center rounded-md ${
+                isActive("/wishlist") ? "bg-indigo-500" : ""
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined mr-2">favorite</span>
@@ -507,7 +410,9 @@ const Navbar = () => {
             </Link>
             <Link
               to="/cart"
-              className="py-2 flex items-center"
+              className={`py-3 px-3 flex items-center rounded-md ${
+                isActive("/cart") ? "bg-indigo-500" : ""
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined mr-2">
@@ -523,10 +428,12 @@ const Navbar = () => {
 
             {isLoggedIn ? (
               <>
-                <div className="h-px w-full bg-gray-300 my-2"></div>
+                <div className="h-px w-full bg-indigo-500/50 my-3"></div>
                 <Link
                   to="/profile"
-                  className="py-2 flex items-center"
+                  className={`py-3 px-3 flex items-center rounded-md ${
+                    isActive("/profile") ? "bg-indigo-500" : ""
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="material-symbols-outlined mr-2">person</span>
@@ -534,7 +441,9 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/orders"
-                  className="py-2 flex items-center"
+                  className={`py-3 px-3 flex items-center rounded-md ${
+                    isActive("/orders") ? "bg-indigo-500" : ""
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="material-symbols-outlined mr-2">
@@ -543,7 +452,7 @@ const Navbar = () => {
                   My Orders
                 </Link>
                 <button
-                  className="py-2 flex items-center text-red-500"
+                  className="py-3 px-3 flex items-center text-red-100 rounded-md mt-4 font-medium"
                   onClick={() => {
                     handleLogout();
                     setIsMobileMenuOpen(false);
@@ -555,29 +464,29 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <div className="h-px w-full bg-gray-300 my-2"></div>
-                <Link
-                  to="/login"
-                  className="py-2 flex items-center font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="material-symbols-outlined mr-2">login</span>
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className={`py-2 mt-2 flex items-center justify-center font-medium rounded-md ${
-                    isScrolled
-                      ? "bg-blue-600 text-white"
-                      : "bg-white text-blue-600"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="material-symbols-outlined mr-2">
-                    person_add
-                  </span>
-                  Register
-                </Link>
+                <div className="h-px w-full bg-indigo-500/50 my-3"></div>
+                <div className="flex flex-col gap-3 mt-2">
+                  <Link
+                    to="/login"
+                    className="py-3 px-3 flex items-center font-medium rounded-md bg-indigo-500 text-white"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="material-symbols-outlined mr-2">
+                      login
+                    </span>
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="py-3 px-3 flex items-center justify-center font-medium rounded-md bg-white text-indigo-600"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="material-symbols-outlined mr-2">
+                      person_add
+                    </span>
+                    Register
+                  </Link>
+                </div>
               </>
             )}
           </div>
@@ -586,5 +495,3 @@ const Navbar = () => {
     </header>
   );
 };
-
-export { Navbar };

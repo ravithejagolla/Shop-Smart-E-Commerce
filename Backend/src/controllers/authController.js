@@ -1,158 +1,249 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { user } from "../models/User.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { sendOtpEmail } from "../services/emailService.js";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../services/tokenService.js";
+import "dotenv/config";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate();
+// Register a new user
+export const registerUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "https://shop-smart-e-commerce.onrender.com/auth/login",
-        { email, password },
-        { withCredentials: true } // allow cookies (refreshToken)
-      );
-
-      const token = response.data.accessToken;
-
-      // Store token in localStorage or sessionStorage
-      if (rememberMe) {
-        localStorage.setItem("token", token);
-      } else {
-        sessionStorage.setItem("token", token);
-      }
-
-      // Set default auth header for axios
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-      alert("Login successful");
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      const message = error.response?.data?.message || "Login failed";
-      alert(message);
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User with this email already exists",
+      });
     }
-  };
 
-  return (
-    <div className="flex min-h-screen">
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
-        <div className="w-full max-w-md">
-          <div className="mb-8">
-            <div className="flex items-center mb-12">
-              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span className="ml-2 text-xl font-bold">RetailCanvas</span>
-            </div>
-            <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
-            <p className="text-gray-600 mt-2">Sign in to your account</p>
-          </div>
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="email@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 border rounded-md"
-                required
-              />
-            </div>
+    // Create new user
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role: "user", // Default role
+    });
 
-            <div>
-              <div className="flex justify-between items-center mb-1">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-blue-600 hover:underline"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 border rounded-md"
-                required
-              />
-            </div>
+    // Generate tokens
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
 
-            <div className="flex items-center mt-4">
-              <input
-                id="remember-me"
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-700"
-              >
-                Remember me for 30 days
-              </label>
-            </div>
+    // Save refresh token to user
+    user.refreshToken = refreshToken;
+    await user.save();
 
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-medium mt-4"
-            >
-              Sign in
-            </button>
+    // Send response with tokens
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      accessToken,
+      refreshToken,
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Registration failed",
+      error: error.message,
+    });
+  }
+};
 
-            <p className="text-center mt-4 text-sm text-gray-600">
-              Don't have an account?{" "}
-              <Link to="/register" className="text-blue-600 hover:underline">
-                Sign up
-              </Link>
-            </p>
-          </form>
-        </div>
-      </div>
+// Login user
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-      {/* Right-side image */}
-      <div
-        className="hidden lg:block lg:w-1/2 relative bg-gray-400 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1441986300917-64674bd600d8')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white p-12">
-          <h2 className="text-4xl font-bold mb-4">Discover Amazing Products</h2>
-          <p className="text-xl text-center mb-12 max-w-md">
-            Sign in to access your personalized shopping experience, track
-            orders, and get exclusive deals.
-          </p>
-          <div className="flex space-x-12 mt-8">
-            <div className="text-center font-medium">Fast Delivery</div>
-            <div className="text-center font-medium">Secure Checkout</div>
-            <div className="text-center font-medium">Quality Products</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    // Check password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    // Generate tokens
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+
+    // Save refresh token to user
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    // Send response with tokens
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      accessToken,
+      refreshToken,
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Login failed",
+      error: error.message,
+    });
+  }
+};
+
+// Forgot password - Generate and send OTP
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Generate 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Hash OTP before saving
+    const salt = await bcrypt.genSalt(10);
+    const hashedOtp = await bcrypt.hash(otp, salt);
+
+    // Save OTP to user document
+    user.resetPasswordOtp = hashedOtp;
+    // OTP expires in 10 minutes
+    user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
+    await user.save();
+
+    // Send OTP via email
+    const emailResult = await sendOtpEmail(user.email, otp);
+
+    if (!emailResult.success) {
+      // If email sending fails, clear OTP data
+      user.resetPasswordOtp = undefined;
+      user.resetPasswordExpire = undefined;
+      await user.save();
+
+      return res.status(500).json({
+        success: false,
+        message: "Failed to send OTP email",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "OTP sent to your email",
+    });
+  } catch (error) {
+    console.error("Forgot password error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to process password reset request",
+      error: error.message,
+    });
+  }
+};
+
+// Reset password with OTP
+export const resetpassword = async (req, res) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+
+    // Find user by email
+    const user = await User.findOne({
+      email,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email or OTP expired",
+      });
+    }
+
+    // Verify OTP
+    const isOtpValid = await bcrypt.compare(otp, user.resetPasswordOtp);
+    if (!isOtpValid) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP",
+      });
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    // Clear reset fields
+    user.resetPasswordOtp = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Password reset successful",
+    });
+  } catch (error) {
+    console.error("Reset password error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to reset password",
+      error: error.message,
+    });
+  }
+};
+
+// Logout user
+export const logout = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // Clear refresh token in database
+    await User.findByIdAndUpdate(userId, { refreshToken: null });
+
+    res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Logout failed",
+      error: error.message,
+    });
+  }
+};
