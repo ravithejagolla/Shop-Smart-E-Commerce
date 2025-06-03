@@ -15,6 +15,9 @@ import { SearchResultsPage } from "./Pages/SearchResult";
 import ProductDetails from "./Pages/ProductDetails";
 import Checkout from "./Pages/Checkout";
 import PageNotFound from "./Pages/PageNotFound";
+import Category from "./Pages/Category"; // Import the new Category page
+import Profile from "./Pages/Profile";
+import Orders from "./Pages/Orders";
 
 // Use the useAuth hook for authentication
 import { useAuth } from "./context/AuthContext";
@@ -31,20 +34,16 @@ const LoadingFallback = () => (
 
 // PrivateRoute component using useAuth for authentication check
 const PrivateRoute = ({ children }) => {
-  // Get auth status from auth context instead of localStorage
   const { isAuthenticated, isAuthLoading } = useAuth();
 
-  // Show loading while checking auth status
   if (isAuthLoading) {
     return <LoadingFallback />;
   }
 
-  // Redirect to login if not authenticated
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
 
-  // Render children if authenticated
   return children;
 };
 
@@ -58,7 +57,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/product/:id" element={<ProductDetails />} />
-
+        <Route path="/category/:category" element={<Category />} />{" "}
+        {/* New route for Category page */}
         {/* Protected routes */}
         <Route
           path="/cart"
@@ -92,7 +92,22 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <Orders />
+            </PrivateRoute>
+          }
+        />
         {/* 404 route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>

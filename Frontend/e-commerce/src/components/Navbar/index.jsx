@@ -165,6 +165,17 @@ export const Navbar = () => {
     }
   };
 
+  // Listen for wishlist updates from other components
+  useEffect(() => {
+    const handleWishlistUpdated = () => {
+      loadWishlist();
+    };
+    window.addEventListener("wishlistUpdated", handleWishlistUpdated);
+    return () => {
+      window.removeEventListener("wishlistUpdated", handleWishlistUpdated);
+    };
+  }, []);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-indigo-600 text-white py-2">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">

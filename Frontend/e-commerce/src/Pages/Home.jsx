@@ -6,6 +6,8 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer/footer";
 import { ProductCard } from "../components/ProductCard/Card";
 import { getAllitems } from "../api/getAllitems";
+import Pagination from "../components/Pagination";
+import HeroCarousel from "../components/HeroCarousel";
 
 // Hero banner images
 const HERO_IMAGES = [
@@ -55,41 +57,13 @@ const CATEGORIES = [
 ];
 
 export const Home = () => {
-  const { cart } = useCart();
   const [items, setItems] = useState([]);
   const [featuredItems, setFeaturedItems] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 8;
-
-  // Check screen size for responsive design
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  // Hero banner carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeroIndex((prevIndex) =>
-        prevIndex === HERO_IMAGES.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Fetch all products
   useEffect(() => {
@@ -152,121 +126,13 @@ export const Home = () => {
     });
   };
 
-  // Pagination component
-  const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    // Generate page numbers
-    const getPageNumbers = () => {
-      const pages = [];
-
-      // Always show first page
-      pages.push(1);
-
-      // Calculate start and end of page range
-      let startPage = Math.max(2, currentPage - 1);
-      let endPage = Math.min(totalPages - 1, currentPage + 1);
-
-      // Add ellipsis after first page if needed
-      if (startPage > 2) {
-        pages.push("...");
-      }
-
-      // Add middle pages
-      for (let i = startPage; i <= endPage; i++) {
-        pages.push(i);
-      }
-
-      // Add ellipsis before last page if needed
-      if (endPage < totalPages - 1) {
-        pages.push("...");
-      }
-
-      // Always show last page if there's more than one page
-      if (totalPages > 1) {
-        pages.push(totalPages);
-      }
-
-      return pages;
-    };
-
-    return (
-      <div className="flex justify-center my-8">
-        <div className="flex items-center">
-          {/* Previous button */}
-          <button
-            onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className={`px-3 py-2 rounded-l-md border ${
-              currentPage === 1
-                ? "bg-gray-50 text-gray-400 cursor-not-allowed"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-            aria-label="Previous page"
-          >
-            <span className="material-symbols-outlined">chevron_left</span>
-          </button>
-
-          {/* Page numbers */}
-          {getPageNumbers().map((page, index) =>
-            page === "..." ? (
-              <span
-                key={`ellipsis-${index}`}
-                className="px-3 py-2 border-t border-b bg-white text-gray-500"
-              >
-                ...
-              </span>
-            ) : (
-              <button
-                key={`page-${page}`}
-                onClick={() => typeof page === "number" && onPageChange(page)}
-                className={`px-4 py-2 border-t border-b ${
-                  currentPage === page
-                    ? "bg-indigo-600 text-white"
-                    : "bg-white text-gray-700 hover:bg-gray-50"
-                }`}
-              >
-                {page}
-              </button>
-            )
-          )}
-
-          {/* Next button */}
-          <button
-            onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className={`px-3 py-2 rounded-r-md border ${
-              currentPage === totalPages
-                ? "bg-gray-50 text-gray-400 cursor-not-allowed"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-            aria-label="Next page"
-          >
-            <span className="material-symbols-outlined">chevron_right</span>
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
 
       <main className="pt-16 flex-grow">
         {/* Hero Banner Section */}
-        <div className="relative bg-gradient-to-r from-indigo-700 to-purple-700 overflow-hidden">
-          {/* Hero Images */}
-          {HERO_IMAGES.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 bg-cover bg-center bg-no-repeat ${
-                currentHeroIndex === index ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ backgroundImage: `url(${image})` }}
-            ></div>
-          ))}
-
-          {/* Overlay and Content */}
-          <div className="absolute inset-0 bg-indigo-900 bg-opacity-70"></div>
+        <HeroCarousel images={HERO_IMAGES}>
           <div className="relative max-w-7xl mx-auto px-4 py-24 sm:py-32 md:py-40">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -292,21 +158,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-
-          {/* Hero Navigation Dots */}
-          <div className="absolute bottom-5 left-0 right-0 flex justify-center space-x-2">
-            {HERO_IMAGES.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full ${
-                  currentHeroIndex === index ? "bg-white" : "bg-white/50"
-                }`}
-                onClick={() => setCurrentHeroIndex(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              ></button>
-            ))}
-          </div>
-        </div>
+        </HeroCarousel>
 
         {/* Categories Section */}
         <div className="py-16 bg-gray-50">

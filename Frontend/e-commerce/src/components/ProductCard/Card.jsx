@@ -1,8 +1,9 @@
 // src/components/ProductCard/Card.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
 import { findProduct } from "../../utilites/findProduct";
+import { addToWishlistApi, removeFromWishlistApi } from "../../api/wishlistApi";
 
 export const ProductCard = ({ product }) => {
   const { cart, addToCart } = useCart();
@@ -12,15 +13,11 @@ export const ProductCard = ({ product }) => {
 
   const navigate = useNavigate();
 
-  // Check if the product is in wishlist on component mount
-  useEffect(() => {
-    checkWishlistStatus();
-  }, [product.id]);
-
   // Function to check if product is already in wishlist
-  const checkWishlistStatus = () => {
+  const checkWishlistStatus = useCallback(() => {
     try {
-      // Check local storage for wishlist data
+      if (typeof window === "undefined" || typeof localStorage === "undefined")
+        return;
       const wishlistData = localStorage.getItem("wishlist");
       if (wishlistData) {
         const wishlist = JSON.parse(wishlistData);
@@ -30,61 +27,114 @@ export const ProductCard = ({ product }) => {
     } catch (error) {
       console.error("Error checking wishlist status:", error);
     }
-  };
+  }, [product.id]);
+
+  useEffect(() => {
+    checkWishlistStatus();
+  }, [product.id, checkWishlistStatus]);
 
   const onAddToCart = () => {
     !isProductInCart ? addToCart(product) : navigate("/cart");
   };
 
+  // Helper to get the correct product id (MongoDB _id or fallback)
+  const getProductId = () => product._id || product.id;
+  // Helper to normalize product object for localStorage
+  const getNormalizedProduct = () => ({
+    ...product,
+    id: product._id || product.id,
+  });
+
   const onMoveToWishlist = async () => {
     if (isAddingToWishlist) return; // Prevent multiple clicks
-
+    setIsAddingToWishlist(true);
     try {
-      setIsAddingToWishlist(true);
-
-      // If already in wishlist, navigate to wishlist
-      if (isInWishlist) {
-        navigate("/wishlist");
-        return;
-      }
-
-      // Get token
       const token =
-        localStorage.getItem("token") || sessionStorage.getItem("token");
-
-      if (!token) {
-        // If not logged in, store in localStorage only and prompt to login
-        alert("Please login to save items to your wishlist.");
-        handleLocalWishlist();
-        navigate("/login");
+        (typeof window !== "undefined" &&
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("token")) ||
+        (typeof window !== "undefined" &&
+          typeof sessionStorage !== "undefined" &&
+          sessionStorage.getItem("token"));
+      if (isInWishlist) {
+        // Remove from backend if logged in
+        if (token) {
+          try {
+            await removeFromWishlistApi(getProductId(), token);
+          } catch (err) {
+            // Log but proceed to update UI/localStorage
+            console.error("Error removing from backend wishlist:", err);
+          }
+        }
+        // Remove from localStorage and update UI
+        handleRemoveFromLocalWishlist();
+        setIsInWishlist(false);
+        // Fire event for UI update
+        if (typeof window !== "undefined") {
+          const wishlistData = localStorage.getItem("wishlist");
+          const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+          window.dispatchEvent(
+            new CustomEvent("wishlistUpdated", {
+              detail: { count: wishlist.length },
+            })
+          );
+        }
         return;
       }
-
-      // Add to backend wishlist
-      try {
-        await fetch(
-          "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ productId: product.id }),
+      // Add to backend wishlist if logged in
+      if (token) {
+        try {
+          const result = await addToWishlistApi(getProductId(), token);
+          if (result && result.alreadyExists) {
+            // Already in wishlist: update UI and localStorage as if add succeeded
+            handleLocalWishlist();
+            setIsInWishlist(true);
+            if (typeof window !== "undefined") {
+              const wishlistData = localStorage.getItem("wishlist");
+              const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+              window.dispatchEvent(
+                new CustomEvent("wishlistUpdated", {
+                  detail: { count: wishlist.length },
+                })
+              );
+            }
+            // Optionally show a friendly message
+            alert("This product is already in your wishlist.");
+            return;
           }
-        );
-
-        // Also update local wishlist for UI updates
+        } catch (err) {
+          // Log but proceed to update UI/localStorage
+          console.error("Error adding to backend wishlist:", err);
+        }
         handleLocalWishlist();
-        // Show success message
-        alert("Product added to wishlist!");
-      } catch (error) {
-        console.error("Error adding to wishlist:", error);
-        // Handle other errors but still update local wishlist
+        setIsInWishlist(true);
+        // Fire event for UI update
+        if (typeof window !== "undefined") {
+          const wishlistData = localStorage.getItem("wishlist");
+          const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+          window.dispatchEvent(
+            new CustomEvent("wishlistUpdated", {
+              detail: { count: wishlist.length },
+            })
+          );
+        }
+      } else {
+        // Not logged in: update localStorage, prompt login
         handleLocalWishlist();
+        setIsInWishlist(true);
+        if (typeof window !== "undefined") {
+          const wishlistData = localStorage.getItem("wishlist");
+          const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+          window.dispatchEvent(
+            new CustomEvent("wishlistUpdated", {
+              detail: { count: wishlist.length },
+            })
+          );
+        }
+        navigate("/login");
       }
     } catch (error) {
-      console.error("Error adding to wishlist:", error);
+      console.error("Error updating wishlist:", error);
     } finally {
       setIsAddingToWishlist(false);
     }
@@ -93,18 +143,51 @@ export const ProductCard = ({ product }) => {
   // Handle local wishlist in localStorage
   const handleLocalWishlist = () => {
     try {
-      // Get current wishlist
+      if (typeof window === "undefined" || typeof localStorage === "undefined")
+        return;
       const wishlistData = localStorage.getItem("wishlist");
       let wishlist = wishlistData ? JSON.parse(wishlistData) : [];
-
+      const normalizedProduct = getNormalizedProduct();
       // Add product to wishlist if not already there
-      if (!wishlist.some((item) => item.id === product.id)) {
-        wishlist.push(product);
+      if (!wishlist.some((item) => (item._id || item.id) === getProductId())) {
+        wishlist.push(normalizedProduct);
         localStorage.setItem("wishlist", JSON.stringify(wishlist));
         setIsInWishlist(true);
+        // Dispatch custom event for instant UI update
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(
+            new CustomEvent("wishlistUpdated", {
+              detail: { count: wishlist.length },
+            })
+          );
+        }
       }
     } catch (error) {
       console.error("Error updating local wishlist:", error);
+    }
+  };
+
+  // Remove product from local wishlist
+  const handleRemoveFromLocalWishlist = () => {
+    try {
+      if (typeof window === "undefined" || typeof localStorage === "undefined")
+        return;
+      const wishlistData = localStorage.getItem("wishlist");
+      let wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+      wishlist = wishlist.filter(
+        (item) => (item._id || item.id) !== getProductId()
+      );
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      // Dispatch custom event for instant UI update
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("wishlistUpdated", {
+            detail: { count: wishlist.length },
+          })
+        );
+      }
+    } catch (error) {
+      console.error("Error removing from local wishlist:", error);
     }
   };
 
@@ -117,7 +200,6 @@ export const ProductCard = ({ product }) => {
           alt={product.title}
           className="object-contain absolute inset-0 w-full h-full hover:scale-105 transition-transform duration-500"
         />
-
         {/* Wishlist indicator (heart icon) */}
         {isInWishlist && (
           <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-sm">
@@ -127,52 +209,41 @@ export const ProductCard = ({ product }) => {
           </div>
         )}
       </div>
-
       {/* Card Content */}
       <div className="card-content p-4 flex flex-col justify-between flex-1">
-        <div>
-          {/* Title */}
-          <h2 className="text-base font-semibold text-gray-800 mb-1 line-clamp-2">
-            {product.title}
-          </h2>
-
-          {/* Price */}
-          <p className="text-indigo-600 font-bold mb-1">₹{product.price}</p>
-
-          {/* Rating */}
-          <div className="flex items-center mb-3">
-            <div className="flex text-amber-400">
-              <span className="material-symbols-outlined text-xs">star</span>
-              <span className="material-symbols-outlined text-xs">star</span>
-              <span className="material-symbols-outlined text-xs">star</span>
-              <span className="material-symbols-outlined text-xs">star</span>
-              <span className="material-symbols-outlined text-xs">
-                star_half
-              </span>
-            </div>
-            <span className="text-xs text-gray-500 ml-1">(4.5)</span>
+        {/* Title */}
+        <h2 className="text-base font-semibold text-gray-800 mb-1 line-clamp-2">
+          {product.title}
+        </h2>
+        {/* Price */}
+        <div className="flex items-center mb-3">
+          <div className="flex text-amber-400">
+            <span className="material-symbols-outlined text-xs">star</span>
+            <span className="material-symbols-outlined text-xs">star</span>
+            <span className="material-symbols-outlined text-xs">star</span>
+            <span className="material-symbols-outlined text-xs">star</span>
+            <span className="material-symbols-outlined text-xs">star_half</span>
           </div>
+          <p className="text-indigo-600 font-bold mb-1">₹{product.price}</p>
         </div>
-
         {/* Action Buttons */}
         <div className="card-actions flex flex-col gap-2">
           <button
-            className="w-full bg-indigo-600 text-white py-2 px-3 rounded-md hover:bg-indigo-700 transition-colors flex items-center justify-center gap-1 text-sm"
             onClick={onAddToCart}
+            className="w-full bg-indigo-600 text-white py-2 px-3 rounded-md hover:bg-indigo-700 transition-colors flex items-center justify-center gap-1 text-sm"
           >
             <span className="material-symbols-outlined text-sm">
               {isProductInCart ? "shopping_cart_checkout" : "shopping_cart"}
             </span>
             {isProductInCart ? "Go to Cart" : "Add to Cart"}
           </button>
-
           <button
+            onClick={onMoveToWishlist}
             className={`w-full py-2 px-3 rounded-md flex items-center justify-center gap-1 text-sm transition-colors ${
               isInWishlist
                 ? "bg-rose-50 border border-rose-200 text-rose-600 hover:bg-rose-100"
                 : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
             } ${isAddingToWishlist ? "opacity-75 cursor-wait" : ""}`}
-            onClick={onMoveToWishlist}
             disabled={isAddingToWishlist}
           >
             <span
@@ -199,34 +270,23 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   // Generate array of page numbers to display
   const getPageNumbers = () => {
     const pages = [];
-
     // Always show first page
     pages.push(1);
-
     // Calculate start and end of page range to show
     let startPage = Math.max(2, currentPage - 1);
     let endPage = Math.min(totalPages - 1, currentPage + 1);
-
     // Add ellipsis after first page if needed
     if (startPage > 2) {
       pages.push("...");
     }
-
     // Add page numbers in the middle
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-
-    // Add ellipsis before last page if needed
-    if (endPage < totalPages - 1) {
-      pages.push("...");
-    }
-
     // Always show last page if there's more than one page
     if (totalPages > 1) {
       pages.push(totalPages);
     }
-
     return pages;
   };
 
@@ -245,7 +305,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         >
           <span className="material-symbols-outlined">chevron_left</span>
         </button>
-
         {/* Page numbers */}
         {getPageNumbers().map((page, index) =>
           page === "..." ? (
@@ -269,7 +328,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             </button>
           )
         )}
-
         {/* Next button */}
         <button
           onClick={() => onPageChange(currentPage + 1)}
