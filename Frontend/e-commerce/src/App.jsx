@@ -10,7 +10,7 @@ import { Cart } from "./Pages/Cart";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { Wishlist } from "./Pages/Wishlist";
-import OrderSuccess from "./Pages/OrderSuccess";
+import OrderSuccess from "./Pages/Ordersuccess";
 import { SearchResultsPage } from "./Pages/SearchResult";
 import ProductDetails from "./Pages/ProductDetails";
 import Checkout from "./Pages/Checkout";
@@ -51,8 +51,6 @@ const PrivateRoute = ({ children }) => {
 };
 
 function App() {
-  const { isAuthenticated } = useAuth();
-
   return (
     <>
       <Suspense fallback={<LoadingFallback />}>
@@ -121,7 +119,7 @@ function App() {
       </Suspense>
 
       {/* Global AI Assistant Floating Chatbot */}
-      {isAuthenticated && <AIAssistant />}
+      <AIAssistant />
     </>
   );
 }

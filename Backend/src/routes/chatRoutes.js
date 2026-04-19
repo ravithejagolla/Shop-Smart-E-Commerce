@@ -5,11 +5,10 @@ import { authentication } from "../middlewares/authMiddleware.js";
 const chatRoutes = express.Router();
 
 // Main route for users to interact with Assistant
-// Protected by authentication so only logged-in users can use the AI
-chatRoutes.post("/ask", authentication, askAssistant);
+// Note: You can make it authentication required if you only want logged-in users to use the AI
+chatRoutes.post("/ask", askAssistant);
 
 // Hidden utility route to manually force seed all database products into vectors
-// Also protected by authentication
-chatRoutes.post("/sync", authentication, syncEmbeddings);
+chatRoutes.post("/sync", syncEmbeddings);
 
 export { chatRoutes };
