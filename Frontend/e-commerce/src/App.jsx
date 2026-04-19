@@ -51,6 +51,8 @@ const PrivateRoute = ({ children }) => {
 };
 
 function App() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <>
       <Suspense fallback={<LoadingFallback />}>
@@ -119,7 +121,7 @@ function App() {
       </Suspense>
 
       {/* Global AI Assistant Floating Chatbot */}
-      <AIAssistant />
+      {isAuthenticated && <AIAssistant />}
     </>
   );
 }
