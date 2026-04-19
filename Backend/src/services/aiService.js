@@ -14,7 +14,7 @@ const ai = new GoogleGenAI({
 export const generateEmbedding = async (text) => {
   try {
     const response = await ai.models.embedContent({
-      model: "text-embedding-004",
+      model: "gemini-embedding-001",
       contents: text,
     });
     return response.embeddings[0].values;
