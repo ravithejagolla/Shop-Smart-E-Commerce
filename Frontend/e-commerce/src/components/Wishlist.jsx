@@ -32,7 +32,7 @@ export const Wishlist = () => {
         try {
           // This endpoint might be different depending on your API structure
           const response = await axios.get(
-            "https://shop-smart-e-commerce.onrender.com/user/wishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/user/wishlist`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -79,7 +79,7 @@ export const Wishlist = () => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/removewishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/removewishlist`,
             { productId },
             {
               headers: {

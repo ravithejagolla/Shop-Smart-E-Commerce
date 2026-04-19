@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const userSchema = mongoose.Schema({
   username: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
@@ -16,7 +15,6 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
     enum: ["customer", "seller", "admin"],
     default: "customer",
   },
@@ -60,7 +58,7 @@ const userSchema = mongoose.Schema({
       ref: "product",
     },
   ],
-  
+
   otp: {
     type: String,
     default: null,
@@ -72,6 +70,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const user = mongoose.model("user", userSchema);
+export const User = mongoose.model("user", userSchema);
 
-export { user };
+

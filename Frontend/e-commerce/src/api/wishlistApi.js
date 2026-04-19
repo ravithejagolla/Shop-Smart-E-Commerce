@@ -2,7 +2,7 @@
 
 export const addToWishlistApi = async (productId, token) => {
   const response = await fetch(
-    "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+    `${import.meta.env.VITE_BACKEND_URL}/product/addToWishlist`,
     {
       method: "POST",
       headers: {
@@ -31,7 +31,7 @@ export const addToWishlistApi = async (productId, token) => {
 
 export const removeFromWishlistApi = async (productId, token) => {
   const response = await fetch(
-    "https://shop-smart-e-commerce.onrender.com/product/removewishlist",
+    `${import.meta.env.VITE_BACKEND_URL}/product/removewishlist`,
     {
       method: "POST",
       headers: {

@@ -115,7 +115,7 @@
 //       if (token) {
 //         try {
 //           await axios.post(
-//             "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+//             `${import.meta.env.VITE_BACKEND_URL}/product/addToWishlist`,
 //             { productId: product.id },
 //             {
 //               headers: {
@@ -163,7 +163,7 @@
 //       if (token) {
 //         try {
 //           await axios.post(
-//             "https://shop-smart-e-commerce.onrender.com/product/removeFromWishlist",
+//             `${import.meta.env.VITE_BACKEND_URL}/product/removeFromWishlist`,
 //             { productId },
 //             {
 //               headers: {
@@ -202,7 +202,7 @@
 //       if (token) {
 //         try {
 //           await axios.post(
-//             "https://shop-smart-e-commerce.onrender.com/product/clearWishlist",
+//             `${import.meta.env.VITE_BACKEND_URL}/product/clearWishlist`,
 //             {},
 //             {
 //               headers: {
@@ -242,7 +242,7 @@
 //       }
 
 //       const response = await axios.get(
-//         "https://shop-smart-e-commerce.onrender.com/product/getWishlist",
+//         `${import.meta.env.VITE_BACKEND_URL}/product/getWishlist`,
 //         {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
@@ -434,7 +434,7 @@ export const WishlistProvider = ({ children }) => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/addToWishlist`,
             { productId: product.id },
             {
               headers: {
@@ -480,7 +480,7 @@ export const WishlistProvider = ({ children }) => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/removewishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/removewishlist`,
             { productId },
             {
               headers: {
@@ -517,7 +517,7 @@ export const WishlistProvider = ({ children }) => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/clearWishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/clearWishlist`,
             {},
             {
               headers: {
@@ -555,7 +555,7 @@ export const WishlistProvider = ({ children }) => {
       }
 
       const response = await axios.get(
-        "https://shop-smart-e-commerce.onrender.com/user/wishlist",
+        `${import.meta.env.VITE_BACKEND_URL}/user/wishlist`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

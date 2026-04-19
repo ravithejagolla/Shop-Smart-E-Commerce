@@ -21,8 +21,8 @@ const productRoutes = Router();
 
 productRoutes.post(
   "/insert",
-  authentication,
-  authorizeRoles("admin", "seller"),
+  // authentication,
+  // authorizeRoles("admin", "seller"),
   productInsert
 );
 productRoutes.get("/category/:category", getProductsByCategory);

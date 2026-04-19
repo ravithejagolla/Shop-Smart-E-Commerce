@@ -1,6 +1,6 @@
-import { user } from "../models/User.js";
+import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken'
 import { sendOtpEmail } from "../services/emailService.js";
 import {
   generateAccessToken,
@@ -31,7 +31,7 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: "user", // Default role
+      role: "customer", // Default role
     });
 
     // Generate tokens

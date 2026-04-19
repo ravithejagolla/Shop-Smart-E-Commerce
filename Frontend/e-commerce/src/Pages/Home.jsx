@@ -144,24 +144,24 @@ export const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Link
-                  to="/products"
-                  className="px-8 py-3 rounded-md bg-white text-indigo-700 font-medium hover:bg-gray-100 transition-colors"
+                  to="/shop"
+                  className="px-8 py-3 rounded-md bg-white text-indigo-700 font-medium hover:bg-gray-100 transition-colors block text-center"
                 >
                   Shop Now
                 </Link>
-                <Link
-                  to="/categories"
-                  className="px-8 py-3 rounded-md bg-transparent border-2 border-white text-white font-medium hover:bg-white/10 transition-colors"
+                <a
+                  href="#categories"
+                  className="px-8 py-3 rounded-md bg-transparent border-2 border-white text-white font-medium hover:bg-white/10 transition-colors block text-center"
                 >
                   Explore Categories
-                </Link>
+                </a>
               </div>
             </div>
           </div>
         </HeroCarousel>
 
         {/* Categories Section */}
-        <div className="py-16 bg-gray-50">
+        <div id="categories" className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -216,7 +216,7 @@ export const Home = () => {
                   Featured Products
                 </h2>
                 <Link
-                  to="/featured"
+                  to="/shop"
                   className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center"
                 >
                   View All
@@ -276,7 +276,7 @@ export const Home = () => {
                   New Arrivals
                 </h2>
                 <Link
-                  to="/new-arrivals"
+                  to="/shop"
                   className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center"
                 >
                   View All
@@ -356,7 +356,7 @@ export const Home = () => {
                   Best Sellers
                 </h2>
                 <Link
-                  to="/best-sellers"
+                  to="/shop"
                   className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center"
                 >
                   View All
@@ -375,48 +375,6 @@ export const Home = () => {
           </div>
         )}
 
-        {/* All Products Section */}
-        <div id="all-products" className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                All Products
-              </h2>
-              <p className="text-gray-600">
-                Browse our collection of high-quality products
-              </p>
-            </div>
-
-            {isLoading ? (
-              <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
-              </div>
-            ) : (
-              <>
-                {items?.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {getCurrentItems().map((product) => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-12">
-                    <p className="text-gray-500">No items available</p>
-                  </div>
-                )}
-
-                {/* Pagination */}
-                {items.length > itemsPerPage && (
-                  <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                  />
-                )}
-              </>
-            )}
-          </div>
-        </div>
       </main>
 
       <Footer />

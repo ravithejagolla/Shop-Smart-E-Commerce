@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer/footer";
 import { ProductCard } from "../components/ProductCard/Card";
 import axios from "axios";
 
-const API_BASE = "https://shop-smart-e-commerce.onrender.com";
+const API_BASE = import.meta.env.VITE_BACKEND_URL;
 
 const Category = () => {
   const { category } = useParams();

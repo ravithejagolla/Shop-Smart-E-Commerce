@@ -84,24 +84,7 @@ export const Cart = () => {
     navigate("/login");
   }, [navigate]);
 
-  // Load payment script - memoized with useCallback
-  const loadScript = useCallback((src) => {
-    return new Promise((resolve) => {
-      // Check if script already exists to prevent duplicates
-      if (document.querySelector(`script[src="${src}"]`)) {
-        resolve(true);
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  }, []);
-
-  // Handle checkout process with improved error handling
+  // Handle checkout process with Stripe
   const handleCheckout = useCallback(async () => {
     // Check if cart is empty
     if (cart.length === 0) {
@@ -123,93 +106,34 @@ export const Cart = () => {
     setMessage("");
 
     try {
-      // Load Razorpay SDK
-      const res = await loadScript(
-        "https://checkout.razorpay.com/v1/checkout.js"
-      );
-      if (!res) {
-        throw new Error(
-          "Payment gateway failed to load. Please check your connection."
-        );
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+      
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/payment/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ cart })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to create checkout session");
       }
 
-      // Get user data (if available)
-      const userData = JSON.parse(localStorage.getItem("user") || "{}");
-
-      // Configure Razorpay
-      const options = {
-        key: "rzp_test_ksA7ruCXgK9Zua", // Consider moving API keys to environment variables
-        amount: total * 100, // in paisa
-        currency: "INR",
-        name: "RetailCanvas",
-        description: `Payment for ${cart.length} item${
-          cart.length > 1 ? "s" : ""
-        }`,
-        image:
-          "https://thewrightfit.netlify.app/assets/The%20Wright%20Fit-logos.jpeg",
-        handler: function (response) {
-          handlePaymentSuccess(response);
-        },
-        prefill: {
-          name: userData.username || "",
-          email: userData.email || "",
-          contact: userData.phone || "",
-        },
-        notes: {
-          address: "RetailCanvas Headquarters",
-        },
-        theme: {
-          color: "#4F46E5", // Indigo color
-        },
-        modal: {
-          ondismiss: function () {
-            setIsProcessing(false);
-          },
-        },
-      };
-
-      // Create Razorpay instance and open payment modal
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
     } catch (error) {
       console.error("Payment error:", error);
       setMessage(error.message || "Something went wrong. Please try again.");
       setIsProcessing(false);
     }
-  }, [cart, total, checkAuthStatus, handleLoginRedirect, loadScript]);
-
-  // Handle successful payment with improved error handling
-  const handlePaymentSuccess = useCallback(
-    (response) => {
-      try {
-        console.log("Payment successful:", response);
-
-        // Clear cart
-        clearCart();
-
-        // Save order details for confirmation page
-        localStorage.setItem(
-          "lastOrderDetails",
-          JSON.stringify({
-            orderId: response.razorpay_payment_id,
-            amount: total,
-            items: cart.length,
-            date: new Date().toISOString(),
-          })
-        );
-
-        // Navigate to success page
-        navigate("/order-success");
-      } catch (error) {
-        console.error("Error processing successful payment:", error);
-        setMessage(
-          "Payment was successful, but we couldn't process your order. Please contact support."
-        );
-        setIsProcessing(false);
-      }
-    },
-    [clearCart, navigate, cart, total]
-  );
+  }, [cart, checkAuthStatus, handleLoginRedirect]);
 
   // Render cart items - extracted for readability
   const renderCartItems = () => {

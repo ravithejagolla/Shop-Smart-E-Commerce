@@ -1,43 +1,71 @@
 import { Product } from "../models/product.js";
-import { user } from "../models/User.js";
+import { User } from "../models/User.js";
 
-const productInsert = async (req, res) => {
+const validateProduct = (product) => {
+  if (!product || typeof product !== "object") return false;
+  const { title, price, description, category, images, rating, stock } = product;
 
-  const { title, price, description, category, images, rating, stock } = req.body;
+  const hasStringField = (value) => typeof value === "string" && value.trim().length > 0;
+  const hasNumberField = (value) => typeof value === "number" && !Number.isNaN(value);
 
   if (
-    !title ||
-    !price ||
-    !description ||
-    !category ||
-    !images ||
-    !rating ||
-    !stock
+    !hasStringField(title) ||
+    !hasNumberField(price) ||
+    !hasStringField(description) ||
+    !hasStringField(category) ||
+    !hasNumberField(rating) ||
+    !hasNumberField(stock)
   ) {
-    return res.status(400).json({
-      message: "Missing product details check!",
-    });
+    return false;
   }
 
+  if (images === undefined || images === null) return false;
+  if (Array.isArray(images)) return images.length > 0;
+  return hasStringField(images);
+};
+
+const normalizeProduct = (product) => {
+  const { title, price, description, category, rating, stock } = product;
+  let { images } = product;
   if (!Array.isArray(images)) {
     images = [images];
   }
-
-  const payload = {
+  return {
     title,
     price,
     description,
     category,
-    images: Array.isArray(images) ? images : [images],
+    images,
     rating,
     stock,
   };
+};
+
+const productInsert = async (req, res) => {
+  const products = Array.isArray(req.body) ? req.body : [req.body];
+
+  const invalidIndex = products.findIndex((product) => !validateProduct(product));
+  if (invalidIndex !== -1) {
+    return res.status(400).json({
+      message: "Missing product details check!",
+      index: invalidIndex,
+    });
+  }
+
+  const payloads = products.map(normalizeProduct);
 
   try {
-    const newProduct = await Product.create(payload);
-    res.status(201).json({
-      message: "product insert successfully",
-      product: newProduct,
+    const createdProducts = await Product.insertMany(payloads);
+    if (createdProducts.length === 1) {
+      return res.status(201).json({
+        message: "product insert successfully",
+        product: createdProducts[0],
+      });
+    }
+
+    return res.status(201).json({
+      message: "products inserted successfully",
+      products: createdProducts,
     });
   } catch (error) {
     console.log(error.message);
@@ -47,7 +75,7 @@ const productInsert = async (req, res) => {
 
 const getProductsByCategory = async (req, res) => {
   try {
-    
+
     const category = req.params.category;
     console.log(category);
 
@@ -126,12 +154,12 @@ const searchProducts = async (req, res) => {
 };
 
 const addProductToCart = async (req, res) => {
-  const userId = req.user.userId;
+  const userId = req.user.id || req.user.userId;
 
   try {
     const { productId, quantity } = req.body;
 
-    const userFetch = await user.findById(userId);
+    const userFetch = await User.findById(userId);
     if (!userFetch) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -190,11 +218,15 @@ const reduceCartProductQuantity = async (req, res) => {
     if (newQuantity < 0)
       return res.status(400).json({ message: "Quantity must be at least 1." });
 
-    const userFetch = await user.findById(userId);
+    const userFetch = await User.findById(userId);
     if (!userFetch) return res.status(404).json({ message: "User not found" });
 
     const product = await Product.findById(productId);
     if (!product) return res.status(404).json({ message: "Product not found" });
+
+    const cartItemIndex = userFetch.cart.findIndex(
+      (item) => item.productId.toString() === productId
+    );
 
     if (cartItemIndex === -1)
       return res.status(404).json({ message: "Product not found in cart" });
@@ -216,7 +248,7 @@ const reduceCartProductQuantity = async (req, res) => {
       cartItem.quantity = newQuantity;
     }
 
-    await user.save();
+    await userFetch.save();
     await product.save();
 
     return res.status(200).json({
@@ -239,15 +271,15 @@ const getAllProduct = async (req, res) => {
     return res.status(200).json({
       message: "Product data fetch Successful!",
       productFetch,
-      cart: user.cart,
     });
   } catch (error) {
+    console.log("Error fetching all products:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 const wishlistProduct = async (req, res) => {
-  const userId = req.user.userId;
+  const userId = req.user.id || req.user.userId;
   if (!userId) {
     return res.status(404).json({ message: "user not found" });
   }
@@ -264,7 +296,7 @@ const wishlistProduct = async (req, res) => {
       return res.status(404).json({ message: "product not found" });
     }
 
-    const userFetch = await user.findOne({ _id: userId });
+    const userFetch = await User.findOne({ _id: userId });
     console.log(userFetch);
 
     const existingWishlist = userFetch.wishlist.find((item) => {
@@ -290,7 +322,7 @@ const wishlistProduct = async (req, res) => {
 };
 
 const removewishlist = async (req, res) => {
-  const userId = req.user.userId;
+  const userId = req.user.id || req.user.userId;
   if (!userId) {
     return res.status(400).json({ message: "User ID not found" });
   }
@@ -300,8 +332,8 @@ const removewishlist = async (req, res) => {
       return res.status(400).json({ message: "Product ID not found" });
     }
 
-    const userFetch = await user.findOne({ _id: userId });
-    console.log(userFetch.wishlist); 
+    const userFetch = await User.findOne({ _id: userId });
+    console.log(userFetch.wishlist);
     const wishlist = userFetch.wishlist;
 
     const productIndex = wishlist.findIndex((id) => {
@@ -314,7 +346,7 @@ const removewishlist = async (req, res) => {
       return res.status(400).json({ message: "Product not found in wishlist" });
     }
 
-    wishlist.splice(productIndex, 1); 
+    wishlist.splice(productIndex, 1);
 
     await userFetch.save();
 
@@ -322,24 +354,24 @@ const removewishlist = async (req, res) => {
       message: "Product removed from wishlist",
     });
   } catch (error) {
-    console.error(error); 
+    console.error(error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 const getTotalCartPrice = async (req, res) => {
   try {
-    const userId = req.user.userId; 
+    const userId = req.user.id || req.user.userId;
     if (!userId)
       return res.status(400).json({ message: "User ID is required" });
 
-    const userFetch = await user.findById(userId).populate({
+    const userFetch = await User.findById(userId).populate({
       path: "cart.productId",
-      model: "Product", 
+      model: "Product",
       select: "title price",
     });
 
-    
+
 
     if (!userFetch) return res.status(404).json({ message: "User not found" });
 
@@ -366,7 +398,7 @@ const getTotalCartPrice = async (req, res) => {
         }
         return null;
       })
-      .filter((item) => item !== null); 
+      .filter((item) => item !== null);
 
     return res.status(200).json({
       message: "Total cart price calculated",
@@ -380,13 +412,13 @@ const getTotalCartPrice = async (req, res) => {
 };
 const getCart = async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.user.id || req.user.userId;
 
     if (!userId) {
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    const userFetch = await user.findById(userId).populate({
+    const userFetch = await User.findById(userId).populate({
       path: "cart.productId",
       model: "Product",
       select: "title price images category stock",
@@ -428,9 +460,9 @@ const getCart = async (req, res) => {
 
 const clearUserCart = async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.user.id || req.user.userId;
 
-    const updatedUser = await user.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       userId,
       { cart: [] }, // Set cart to empty array
       { new: true }

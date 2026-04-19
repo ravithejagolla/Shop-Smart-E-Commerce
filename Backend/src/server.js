@@ -14,12 +14,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+import { chatRoutes } from "./routes/chatRoutes.js";
+
 // routes
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
-app.use("/payment",paymentRoutes);
+app.use("/payment", paymentRoutes);
 app.use("/orders", orderRoutes);
+app.use("/api/chat", chatRoutes);
 
 // database connection
 db()

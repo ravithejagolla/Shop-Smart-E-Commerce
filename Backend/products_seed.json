@@ -1,0 +1,2224 @@
+[
+  {
+    "title": "Apple AirPods Pro (2nd Generation)",
+    "price": 249,
+    "description": "Active noise cancellation, adaptive transparency, and improved sound for immersive listening.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1518442314624-ecc0c8d0d88a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 120
+  },
+  {
+    "title": "Sony WH-1000XM5 Wireless Headphones",
+    "price": 348,
+    "description": "Industry-leading noise cancellation, premium audio quality, and all-day comfort.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1516707570267-c3b8a1328696?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 95
+  },
+  {
+    "title": "Samsung Galaxy S24 Ultra Smartphone",
+    "price": 1199,
+    "description": "Powerful flagship phone with 200MP camera, AMOLED display, and long-lasting battery.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1512499617640-c2f99912e7d4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 76
+  },
+  {
+    "title": "Dell XPS 13 Laptop",
+    "price": 999,
+    "description": "Compact 13-inch laptop with stunning InfinityEdge display and Intel Core i7 performance.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 54
+  },
+  {
+    "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker",
+    "price": 119,
+    "description": "Multi-use programmable pressure cooker works as slow cooker, rice cooker, steamer, and more.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 142
+  },
+  {
+    "title": "Ninja Foodi Air Fryer Oven",
+    "price": 219,
+    "description": "Air fry, roast, bake, and dehydrate with one countertop appliance.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 88
+  },
+  {
+    "title": "Dyson V12 Detect Slim Cordless Vacuum",
+    "price": 599,
+    "description": "High-performance cordless vacuum with laser dust detection and powerful suction.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1505740106531-4243f3831e6c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 40
+  },
+  {
+    "title": "Philips SmartSleep Wake-up Light Alarm Clock",
+    "price": 99,
+    "description": "Sunrise simulation alarm clock helps improve sleep and wake-up routines.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 130
+  },
+  {
+    "title": "Nike Air Zoom Pegasus 40 Running Shoes",
+    "price": 130,
+    "description": "Responsive cushioning and durable traction for daily runs.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 180
+  },
+  {
+    "title": "Adidas Ultraboost 23 Sneakers",
+    "price": 180,
+    "description": "Comfortable running shoe with energy-returning Boost midsole.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1528701800489-20f9b6af94d8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 112
+  },
+  {
+    "title": "Garmin Forerunner 265 GPS Watch",
+    "price": 349,
+    "description": "Advanced running smartwatch with music playback and marathon training plans.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1543168253-4a80b9c060f3?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 63
+  },
+  {
+    "title": "Theragun Prime Percussion Massage Gun",
+    "price": 299,
+    "description": "Deep muscle treatment device for recovery and tension relief.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1526401485004-87bf591a8159?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 78
+  },
+  {
+    "title": "Levi's 501 Original Fit Jeans",
+    "price": 69,
+    "description": "Classic straight-leg denim with button fly for timeless style.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1530845644160-638d860f0a51?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 200
+  },
+  {
+    "title": "The North Face ThermoBall Jacket",
+    "price": 199,
+    "description": "Lightweight insulated jacket with superior warmth and packability.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 96
+  },
+  {
+    "title": "Ray-Ban Wayfarer Sunglasses",
+    "price": 154,
+    "description": "Iconic sunglasses with UV protection and classic acetate frame.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 145
+  },
+  {
+    "title": "Kate Spade Leather Crossbody Bag",
+    "price": 169,
+    "description": "Elegant leather bag with adjustable strap and interior card slots.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 82
+  },
+  {
+    "title": "KitchenAid Artisan Stand Mixer",
+    "price": 429,
+    "description": "5-quart stand mixer with durable metal construction and versatile attachments.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1506368083636-6defb67639f3?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 55
+  },
+  {
+    "title": "Samsung 55-inch QLED 4K Smart TV",
+    "price": 699,
+    "description": "Vivid quantum dot color, smart streaming apps, and sleek design.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1513483460600-869d6b3f7fe8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 44
+  },
+  {
+    "title": "Bose SoundLink Revolve+ Bluetooth Speaker",
+    "price": 279,
+    "description": "Portable speaker with true 360-degree sound and deep bass.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 101
+  },
+  {
+    "title": "Canon EOS R10 Mirrorless Camera",
+    "price": 979,
+    "description": "Compact mirrorless camera with 24.2MP sensor and fast autofocus.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1519183071298-a2962f3d0025?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 31
+  },
+  {
+    "title": "GoPro HERO12 Black Action Camera",
+    "price": 399,
+    "description": "Waterproof action camera with HyperSmooth stabilization and 5.3K video.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1531182516661-2f3d41e60283?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 88
+  },
+  {
+    "title": "Lululemon Align Leggings",
+    "price": 98,
+    "description": "Buttery-soft high-rise leggings with four-way stretch for yoga and lounge.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 134
+  },
+  {
+    "title": "H&M Cotton Crewneck T-Shirt Pack",
+    "price": 35,
+    "description": "Comfortable everyday essentials available in multiple colors.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1520975912103-2065d0170966?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 260
+  },
+  {
+    "title": "Fossil Gen 6 Smartwatch",
+    "price": 299,
+    "description": "Stylish touchscreen smartwatch with heart rate and activity tracking.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 67
+  },
+  {
+    "title": "Sony PlayStation 5 Console",
+    "price": 499,
+    "description": "Next-gen gaming console with immersive graphics and fast loading.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1587202372775-7d660f5d47db?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 24
+  },
+  {
+    "title": "Xbox Series X 1TB Console",
+    "price": 499,
+    "description": "Powerful gaming console with 4K HDR gaming and ultra-fast load times.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1581113694089-1bb6f0c9f6c4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 30
+  },
+  {
+    "title": "Apple Watch Series 9",
+    "price": 399,
+    "description": "Advanced health and fitness tracking with bright always-on retina display.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 96
+  },
+  {
+    "title": "Beats Studio3 Wireless Headphones",
+    "price": 349,
+    "description": "Noise cancelling headphones with Apple W1 chip for seamless connectivity.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1499875036034-530b7efab42d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 70
+  },
+  {
+    "title": "Crock-Pot 6-Quart Slow Cooker",
+    "price": 49,
+    "description": "Set it and forget it slow cooker for easy meals and versatile recipes.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 155
+  },
+  {
+    "title": "Brentwood 4-Slice Stainless Steel Toaster",
+    "price": 42,
+    "description": "Wide slots and toast shade control for perfectly browned bread every time.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1512250532993-a17baee04bd9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 89
+  },
+  {
+    "title": "Shark Navigator Lift-Away Vacuum",
+    "price": 199,
+    "description": "Powerful upright vacuum with detachable canister for clean floors and above-floor areas.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 70
+  },
+  {
+    "title": "Vitamix Explorian Blender",
+    "price": 349,
+    "description": "High-performance blender for smoothies, soups, and frozen treats.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1510626176961-4b94f3e7d2e8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 45
+  },
+  {
+    "title": "Converse Chuck Taylor All Star High Tops",
+    "price": 65,
+    "description": "Classic canvas sneakers with timeless style and comfortable fit.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1528701800489-20f9b6af94d8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 210
+  },
+  {
+    "title": "Levi's Trucker Denim Jacket",
+    "price": 89,
+    "description": "Classic denim jacket with button closure and front flap pockets.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 102
+  },
+  {
+    "title": "Calvin Klein Modern Cotton Bralette",
+    "price": 29,
+    "description": "Soft cotton bralette with signature elastic band and minimalist fit.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1495121605193-b116b5b9c8ce?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 175
+  },
+  {
+    "title": "Sony A6400 Mirrorless Camera Kit",
+    "price": 899,
+    "description": "Compact camera with flip-up screen, fast autofocus, and 4K video recording.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1495562569060-2eec283d3391?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 28
+  },
+  {
+    "title": "Anker PowerCore 26800mAh Portable Charger",
+    "price": 79,
+    "description": "High-capacity power bank with fast charging for smartphones and tablets.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 146
+  },
+  {
+    "title": "Google Nest Thermostat",
+    "price": 129,
+    "description": "Smart thermostat that learns your schedule and saves energy.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1513791051031-1db0361c4c74?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 90
+  },
+  {
+    "title": "Ring Video Doorbell 4",
+    "price": 199,
+    "description": "HD video doorbell with color night vision and quick replies.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1515165562835-c317ece0fca2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 74
+  },
+  {
+    "title": "Bissell CrossWave Multi-Surface Cleaner",
+    "price": 279,
+    "description": "Vacuum and wash hardwood, tile, laminate, and area rugs in one pass.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1578894385808-bd0482b7d85f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 37
+  },
+  {
+    "title": "Crock-Pot 8-Quart Programmable Slow Cooker",
+    "price": 69,
+    "description": "Large-capacity slow cooker with digital timer and easy-clean stoneware.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1523906630133-f6934a1ab1b1?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 80
+  },
+  {
+    "title": "Seiko Men's Stainless Steel Watch",
+    "price": 219,
+    "description": "Classic automatic watch with stainless steel bracelet and scratch-resistant crystal.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 60
+  },
+  {
+    "title": "Samsonite Winfield 3 DLX Hardside Luggage",
+    "price": 149,
+    "description": "Durable spinner luggage with TSA-approved lock and expansion capabilities.",
+    "category": "travel",
+    "images": [
+      "https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 49
+  },
+  {
+    "title": "Fujifilm Instax Mini 12 Instant Camera",
+    "price": 79,
+    "description": "Compact instant camera with sleek design and automatic exposure.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 131
+  },
+  {
+    "title": "Tile Mate Bluetooth Tracker (2024)",
+    "price": 29,
+    "description": "Attach to keys, wallet, or bag and locate lost items with the Tile app.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1499336315816-097655dcfbda?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 174
+  },
+  {
+    "title": "Bose QuietComfort Earbuds II",
+    "price": 299,
+    "description": "True wireless earbuds with adaptive noise cancellation and crisp sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 53
+  },
+  {
+    "title": "Fitbit Charge 6 Fitness Tracker",
+    "price": 149,
+    "description": "Advanced health metrics, GPS, and long battery life for daily tracking.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 92
+  },
+  {
+    "title": "Oculus Quest 2 VR Headset",
+    "price": 299,
+    "description": "All-in-one virtual reality headset with immersive games and experiences.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 39
+  },
+  {
+    "title": "Sony WF-1000XM4 True Wireless Earbuds",
+    "price": 279,
+    "description": "Premium noise cancelling earbuds with long battery life and rich sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1512499617640-c2f99912e7d4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Dyson Pure Cool Air Purifier Fan",
+    "price": 499,
+    "description": "Air purifier and fan in one with HEPA filtration and quiet operation.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1514924013411-cbf2505d1f9b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 28
+  },
+  {
+    "title": "Ninja Professional Blender 1000W",
+    "price": 99,
+    "description": "Powerful blender with Total Crushing Technology for smoothies and frozen drinks.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 118
+  },
+  {
+    "title": "Apple iPad Air 5th Gen",
+    "price": 599,
+    "description": "Lightweight tablet with M1 chip, 10.9-inch Liquid Retina display, and Apple Pencil support.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 47
+  },
+  {
+    "title": "Microsoft Surface Pro 9",
+    "price": 999,
+    "description": "2-in-1 laptop with detachable keyboard, touchscreen, and Windows 11.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517430816045-df4b7de11d1b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 34
+  },
+  {
+    "title": "JBL Charge 5 Portable Bluetooth Speaker",
+    "price": 179,
+    "description": "Waterproof speaker with 20 hours of playtime and powerful bass.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1518828038432-46c8a2db041a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 92
+  },
+  {
+    "title": "Amazon Echo Dot (5th Gen)",
+    "price": 49,
+    "description": "Compact smart speaker with Alexa for music, smart home control, and routines.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 205
+  },
+  {
+    "title": "Google Pixel 8 Smartphone",
+    "price": 699,
+    "description": "Google's latest phone with advanced camera features and clean Android experience.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1520614073990-dd602581bb2e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 74
+  },
+  {
+    "title": "Roku Streaming Stick 4K",
+    "price": 49,
+    "description": "4K HDR streaming device with voice remote and smooth navigation.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 133
+  },
+  {
+    "title": "Anker Soundcore Liberty Air 2 Pro Earbuds",
+    "price": 129,
+    "description": "Noise cancelling wireless earbuds with customizable sound profiles.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1541760803-e06b6b6d0e0f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 118
+  },
+  {
+    "title": "Eufy RoboVac 30C Robot Vacuum",
+    "price": 249,
+    "description": "Slim robot vacuum with Wi-Fi connectivity and boost IQ technology.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 53
+  },
+  {
+    "title": "Shark Rocket Ultra-Light Corded Stick Vacuum",
+    "price": 179,
+    "description": "Lightweight stick vacuum with powerful suction and versatile cleaning tools.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 78
+  },
+  {
+    "title": "KitchenAid 5-Speed Hand Mixer",
+    "price": 49,
+    "description": "Powerful hand mixer with comfortable grip and 5 speed settings.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 101
+  },
+  {
+    "title": "Nest Hello Video Doorbell",
+    "price": 179,
+    "description": "Wired smart doorbell with HD video and facial recognition.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 34
+  },
+  {
+    "title": "Calphalon Classic Nonstick Cookware Set",
+    "price": 199,
+    "description": "10-piece cookware set with durable nonstick interior and tempered glass lids.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 62
+  },
+  {
+    "title": "Nintendo Switch OLED Model",
+    "price": 349,
+    "description": "Portable gaming console with vibrant OLED screen and enhanced audio.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1576496578269-8cabf0b89d57?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 45
+  },
+  {
+    "title": "Garmin Instinct 2 Solar GPS Watch",
+    "price": 499,
+    "description": "Rugged outdoor smartwatch with solar charging and multi-band GPS.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1524492146001-2a4fb92c5f4e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 29
+  },
+  {
+    "title": "Patagonia Nano Puff Jacket",
+    "price": 199,
+    "description": "Lightweight insulated jacket designed for warmth and packability.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 58
+  },
+  {
+    "title": "Brooks Ghost 15 Running Shoes",
+    "price": 140,
+    "description": "Cushioned running shoe with smooth stride and breathable design.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 120
+  },
+  {
+    "title": "Osprey Atmos AG 65 Backpack",
+    "price": 280,
+    "description": "Comfortable hiking backpack with anti-gravity suspension and ventilated back panel.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 40
+  },
+  {
+    "title": "Yeti Rambler 30oz Tumbler",
+    "price": 45,
+    "description": "Durable stainless steel tumbler with excellent insulation for hot and cold drinks.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 190
+  },
+  {
+    "title": "Stanley Classic Vacuum Insulated Bottle",
+    "price": 44,
+    "description": "24-ounce water bottle keeps beverages hot or cold for hours.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1513433503854-97e973f3c77b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 132
+  },
+  {
+    "title": "Bose Frames Alto Audio Sunglasses",
+    "price": 199,
+    "description": "Audio sunglasses with open-ear listening and built-in speakers.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 51
+  },
+  {
+    "title": "Hydro Flask 32oz Wide Mouth Bottle",
+    "price": 45,
+    "description": "Insulated water bottle with durable powder coat finish.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 155
+  },
+  {
+    "title": "Herman Miller Aeron Office Chair",
+    "price": 999,
+    "description": "Ergonomic office chair with adjustable lumbar support and breathable mesh.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 18
+  },
+  {
+    "title": "Roku Ultra Streaming Media Player",
+    "price": 99,
+    "description": "Premium streaming device with private listening remote and Dolby Vision.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1516515429576-72284bec3823?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 82
+  },
+  {
+    "title": "Belkin 10W Wireless Charging Pad",
+    "price": 24,
+    "description": "Fast wireless charger compatible with Qi-certified smartphones.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 175
+  },
+  {
+    "title": "Casio G-Shock Digital Watch",
+    "price": 99,
+    "description": "Shock-resistant digital watch with world time and stopwatch.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-15184320357-7b951c6c56a8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 139
+  },
+  {
+    "title": "Nike Dri-FIT Training Shorts",
+    "price": 32,
+    "description": "Lightweight workout shorts with breathable fabric and quick-dry comfort.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 178
+  },
+  {
+    "title": "Patagonia Black Hole Duffel Bag",
+    "price": 159,
+    "description": "Durable travel duffel with weather-resistant fabric and a roomy interior.",
+    "category": "travel",
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 56
+  },
+  {
+    "title": "Le Creuset Enameled Cast Iron Dutch Oven",
+    "price": 379,
+    "description": "Premium Dutch oven for slow-cooking, baking, and roasting with even heat distribution.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1511689660979-7c5d4b0d38f6?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 25
+  },
+  {
+    "title": "Bosch 800 Series 24-inch Built-In Dishwasher",
+    "price": 949,
+    "description": "Quiet dishwasher with flexible racks and powerful wash performance.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 19
+  },
+  {
+    "title": "Philips Norelco OneBlade Hybrid Electric Trimmer",
+    "price": 34,
+    "description": "All-in-one shaver and trimmer with fast-moving cutter.",
+    "category": "personal care",
+    "images": [
+      "https://images.unsplash.com/photo-1523264766116-2981ead2b963?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 185
+  },
+  {
+    "title": "Oral-B Pro 1000 Electric Toothbrush",
+    "price": 49,
+    "description": "Daily cleaning electric toothbrush with 3D cleaning action.",
+    "category": "personal care",
+    "images": [
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 220
+  },
+  {
+    "title": "Philips Hue White and Color Ambiance Starter Kit",
+    "price": 179,
+    "description": "Smart lighting kit with color-changing bulbs and voice control compatibility.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 89
+  },
+  {
+    "title": "Sonos Beam Soundbar",
+    "price": 449,
+    "description": "Compact smart soundbar with voice control and room-filling sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1515548213874-2328d69073b6?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 42
+  },
+  {
+    "title": "Crate & Barrel Modern Task Lamp",
+    "price": 89,
+    "description": "Sleek desk lamp with adjustable arm and warm LED lighting.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 102
+  },
+  {
+    "title": "Keurig K-Elite Single Serve Coffee Maker",
+    "price": 169,
+    "description": "Versatile coffee maker with strong brew, iced coffee, and hot water options.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 73
+  },
+  {
+    "title": "Fujifilm X-T30 II Mirrorless Camera",
+    "price": 899,
+    "description": "Compact mirrorless camera with 26.1MP sensor and advanced autofocus.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1519183071298-a2962f3d0025?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 39
+  },
+  {
+    "title": "AeroGarden Harvest Elite Indoor Garden",
+    "price": 179,
+    "description": "Countertop smart garden for fresh herbs and vegetables year-round.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 58
+  },
+  {
+    "title": "Sony SRS-XB33 Portable Wireless Speaker",
+    "price": 199,
+    "description": "Waterproof speaker with extra bass and party lighting.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 111
+  },
+  {
+    "title": "Carhartt Men's Rugged Flex Cargo Pants",
+    "price": 59,
+    "description": "Durable work pants with flexible stretch and multiple pockets.",
+    "category": "fashion",
+    "images": [
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 141
+  },
+  {
+    "title": "Mophie 10000mAh Powerstation Portable Charger",
+    "price": 49,
+    "description": "Compact external battery with USB-C and USB-A ports for fast charging.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1512499617640-c2f99912e7d4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 158
+  },
+  {
+    "title": "Amazon Kindle Paperwhite",
+    "price": 139,
+    "description": "Waterproof e-reader with high-resolution display and adjustable warm light.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 132
+  },
+  {
+    "title": "Bose Home Speaker 500",
+    "price": 299,
+    "description": "Smart speaker with rich stereo sound and built-in voice control.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 59
+  },
+  {
+    "title": "HyperX Cloud II Gaming Headset",
+    "price": 99,
+    "description": "Comfortable wired headset with virtual 7.1 surround sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1552321280-91c8f2e5ffc7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 122
+  },
+  {
+    "title": "Nintendo Switch Mario Kart 8 Deluxe Bundle",
+    "price": 399,
+    "description": "Bundle including Nintendo Switch console and Mario Kart 8 Deluxe game.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1573495632101-4c9e1e4c2814?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 18
+  },
+  {
+    "title": "Samsung Galaxy Buds2 Pro",
+    "price": 229,
+    "description": "Premium true wireless earbuds with noise cancellation and immersive sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1516707570267-c3b8a1328696?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 66
+  },
+  {
+    "title": "Lenovo IdeaPad 5 14-inch Laptop",
+    "price": 649,
+    "description": "Thin and light laptop with AMD Ryzen performance and crisp display.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 52
+  },
+  {
+    "title": "HP Envy 5055 Wireless All-in-One Printer",
+    "price": 99,
+    "description": "Printer, copier, and scanner for home office with wireless connectivity.",
+    "category": "office",
+    "images": [
+      "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 88
+  },
+  {
+    "title": "Logitech MX Master 3 Mouse",
+    "price": 99,
+    "description": "Advanced wireless mouse with ergonomic design and precision scrolling.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517430816045-df4b7de11d1b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 77
+  },
+  {
+    "title": "Bose Sport Earbuds",
+    "price": 179,
+    "description": "Secure-fit wireless earbuds built for workouts and active lifestyles.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1506224774467-6af70d05d0d7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 93
+  },
+  {
+    "title": "Philips SmartSleep Wake-up Light",
+    "price": 89,
+    "description": "Light therapy alarm clock with sunrise simulation and multiple tones.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 105
+  },
+  {
+    "title": "Herman Miller Sayl Office Chair",
+    "price": 545,
+    "description": "Stylish ergonomic office chair with flexible back support.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 21
+  },
+  {
+    "title": "Apple Magic Keyboard for iPad",
+    "price": 299,
+    "description": "Premium floating cantilever design keyboard for iPad with backlit keys.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1517430816045-df4b7de11d1b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 48
+  },
+  {
+    "title": "Samsung Galaxy Tab S8 Tablet",
+    "price": 699,
+    "description": "High-performance Android tablet with S Pen and vivid display.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1520975912103-2065d0170966?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 37
+  },
+  {
+    "title": "Panasonic Lumix ZS200 Travel Camera",
+    "price": 999,
+    "description": "Compact travel camera with 15x zoom and 4K video capabilities.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 26
+  },
+  {
+    "title": "Bose QuietComfort 45 Headphones",
+    "price": 329,
+    "description": "Comfortable over-ear noise cancelling headphones with balanced sound.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1510626176961-4b94f3e7d2e8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Sennheiser Momentum 4 Wireless",
+    "price": 349,
+    "description": "Premium noise cancelling headphones with exceptional clarity and comfort.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 45
+  },
+  {
+    "title": "Logitech C920 HD Pro Webcam",
+    "price": 79,
+    "description": "1080p webcam with clear video and built-in stereo microphones.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 143
+  },
+  {
+    "title": "Nespresso VertuoPlus Coffee Machine",
+    "price": 199,
+    "description": "Centrifusion brewing for crema-rich coffee and espresso at home.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1504610926078-a1611febcad3?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 84
+  },
+  {
+    "title": "Sony ZV-1 Vlogging Camera",
+    "price": 749,
+    "description": "Compact camera designed for vloggers with fast autofocus and advanced audio.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 36
+  },
+  {
+    "title": "Breville Smart Oven Air Fryer Pro",
+    "price": 399,
+    "description": "Countertop convection oven with air frying and dehydrating capabilities.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 27
+  },
+  {
+    "title": "GoPro HERO11 Black Action Camera",
+    "price": 449,
+    "description": "Powerful action camera with 5.3K60 video and HyperSmooth stabilization.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 33
+  },
+  {
+    "title": "Blue Yeti USB Microphone",
+    "price": 129,
+    "description": "Versatile USB mic for streaming, podcasting, and voiceovers.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1513185158878-4d8aa7aed028?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 82
+  },
+  {
+    "title": "Ring Spotlight Cam Battery",
+    "price": 199,
+    "description": "Wireless security camera with motion-activated spotlight and two-way talk.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1515974257159-6794f78d8f3f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 56
+  },
+  {
+    "title": "Whirlpool 6th Sense Top Load Washing Machine",
+    "price": 649,
+    "description": "Large capacity washing machine with smart cleaning technology.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1578894385808-bd0482b7d85f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 16
+  },
+  {
+    "title": "Nest Cam Indoor Security Camera",
+    "price": 129,
+    "description": "Indoor security camera with 24/7 live streaming and person alerts.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 79
+  },
+  {
+    "title": "Black+Decker 20V MAX Cordless Drill",
+    "price": 79,
+    "description": "Lightweight cordless drill with 20-volt lithium battery for DIY tasks.",
+    "category": "tools",
+    "images": [
+      "https://images.unsplash.com/photo-1515162305282-2a1c105e811d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 110
+  },
+  {
+    "title": "Stanley 65-Piece Home Repair Tool Kit",
+    "price": 49,
+    "description": "Complete toolkit for home repairs with durable tools and carrying case.",
+    "category": "tools",
+    "images": [
+      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 93
+  },
+  {
+    "title": "Wüsthof Classic 8-inch Chef's Knife",
+    "price": 159,
+    "description": "Precision-forged knife with razor-sharp edge for everyday kitchen work.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 38
+  },
+  {
+    "title": "Bissell Little Green Portable Carpet Cleaner",
+    "price": 89,
+    "description": "Compact cleaner for carpets, upholstery, and stairs.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 72
+  },
+  {
+    "title": "Nespresso Pixie Espresso Machine",
+    "price": 249,
+    "description": "Compact espresso machine with fast heat-up and automatic extraction.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1512613736518-7e4f3c2f749a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 62
+  },
+  {
+    "title": "GoPro HERO10 Black Action Camera",
+    "price": 399,
+    "description": "Rugged action camera with 5.3K video and HyperSmooth 4.0 stabilization.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e6?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 41
+  },
+  {
+    "title": "Samsung 65-inch The Frame 4K Smart TV",
+    "price": 1299,
+    "description": "Smart TV with art mode and customizable bezel for a gallery-style display.",
+    "category": "electronics",
+    "images": [
+      "https://images.unsplash.com/photo-1513214392235-1a6ae1222e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 22
+  },
+  {
+    "title": "Casper Original Pillow",
+    "price": 89,
+    "description": "Soft foam pillow designed for pressure relief and breathability.",
+    "category": "home",
+    "images": [
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 130
+  },
+  {
+    "title": "Rocketbook Smart Reusable Notebook",
+    "price": 34,
+    "description": "Reusable notebook that uploads notes to the cloud and wipes clean with water.",
+    "category": "office",
+    "images": [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 94
+  },
+  {
+    "title": "Furbo Dog Camera with Treat Tossing",
+    "price": 169,
+    "description": "Interactive pet camera with treat dispenser, bark alerts, and 2-way audio.",
+    "category": "pet supplies",
+    "images": [
+      "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 74
+  },
+  {
+    "title": "KONG Classic Dog Toy",
+    "price": 12,
+    "description": "Durable chew toy for aggressive chewers, perfect for stuffing with treats.",
+    "category": "pet supplies",
+    "images": [
+      "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 202
+  },
+  {
+    "title": "Furbo 360° Automatic Cat Feeder",
+    "price": 179,
+    "description": "Smart feeder with portion control and smartphone scheduling.",
+    "category": "pet supplies",
+    "images": [
+      "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 49
+  },
+  {
+    "title": "PetSafe ScoopFree Self-Cleaning Litter Box",
+    "price": 169,
+    "description": "Self-cleaning litter box that automatically rakes waste into a covered tray.",
+    "category": "pet supplies",
+    "images": [
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 62
+  },
+  {
+    "title": "Under Armour Men's Charged Assert 9 Running Shoes",
+    "price": 100,
+    "description": "Lightweight running shoes with responsive cushioning and breathable mesh upper.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 145
+  },
+  {
+    "title": "Peloton Bike+",
+    "price": 2495,
+    "description": "Interactive stationary bike with live and on-demand classes.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 12
+  },
+  {
+    "title": "Wilson Pro Staff RF97 Autograph Tennis Racket",
+    "price": 249,
+    "description": "Professional tennis racket used by Roger Federer with precision and control.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Titleist AVX Golf Balls",
+    "price": 55,
+    "description": "Premium golf balls with advanced core technology for maximum distance and control.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1587174486073-ae3f4e4c3e0d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 89
+  },
+  {
+    "title": "Oakley Prizm Snow Goggles",
+    "price": 199,
+    "description": "High-performance snow goggles with Prizm lens technology for enhanced visibility.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 78
+  },
+  {
+    "title": "Manduka PRO Yoga Mat",
+    "price": 128,
+    "description": "Premium yoga mat with superior grip and cushioning for all practice levels.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 134
+  },
+  {
+    "title": "Callaway ERC Soft Golf Balls",
+    "price": 45,
+    "description": "High-performance golf balls with exceptional feel and distance.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 112
+  },
+  {
+    "title": "Speedo Women's Swim Goggles",
+    "price": 25,
+    "description": "Comfortable anti-fog swim goggles with UV protection.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 167
+  },
+  {
+    "title": "Bowflex SelectTech 552 Adjustable Dumbbells",
+    "price": 399,
+    "description": "Adjustable dumbbells from 5 to 52.5 pounds each for versatile home workouts.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 45
+  },
+  {
+    "title": "Yeti Tundra 45 Cooler",
+    "price": 350,
+    "description": "Hard-sided cooler that keeps ice for days with superior insulation.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 78
+  },
+  {
+    "title": "Coleman Sundome Tent",
+    "price": 99,
+    "description": "4-person dome tent with weather-resistant design for camping.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 156
+  },
+  {
+    "title": "REI Co-op Kingdom 6 Person Tent",
+    "price": 499,
+    "description": "Spacious family tent with excellent weather protection and ventilation.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 34
+  },
+  {
+    "title": "Black Diamond Trail Ergo Cork Trekking Poles",
+    "price": 139,
+    "description": "Lightweight adjustable trekking poles with cork grips for comfort.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 89
+  },
+  {
+    "title": "MSR PocketRocket 2 Stove",
+    "price": 89,
+    "description": "Ultralight backpacking stove with fast boil times and wind protection.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Garmin inReach Mini Satellite Communicator",
+    "price": 399,
+    "description": "Two-way satellite communicator for emergency messaging and location sharing.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 23
+  },
+  {
+    "title": "Snow Peak Titanium Single Wall Mug",
+    "price": 49,
+    "description": "Durable titanium mug perfect for camping and outdoor adventures.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 134
+  },
+  {
+    "title": "Patagonia Baggies Shorts",
+    "price": 49,
+    "description": "Quick-drying shorts made from recycled plastic bottles for outdoor activities.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1506629905607-0b5b8b5b2b5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 178
+  },
+  {
+    "title": "Columbia Newton Ridge Waterproof Hiking Boots",
+    "price": 129,
+    "description": "Waterproof hiking boots with advanced traction and comfort technology.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 92
+  },
+  {
+    "title": "The North Face Borealis Backpack",
+    "price": 99,
+    "description": "Durable backpack with multiple compartments for day hikes and travel.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 145
+  },
+  {
+    "title": "CamelBak Eddy+ Water Bottle",
+    "price": 29,
+    "description": "Insulated water bottle with bite valve for easy hydration on the go.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 203
+  },
+  {
+    "title": "BioLite SolarPanel 5+",
+    "price": 149,
+    "description": "Portable solar panel for charging devices and powering small electronics.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 56
+  },
+  {
+    "title": "Jetboil Flash Cooking System",
+    "price": 119,
+    "description": "Compact camping stove system with fast boil times and integrated pot.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 78
+  },
+  {
+    "title": "Suunto 9 Peak Multisport GPS Watch",
+    "price": 499,
+    "description": "Rugged GPS watch with advanced training metrics and battery life.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 34
+  },
+  {
+    "title": "TriggerPoint GRID Foam Roller",
+    "price": 39,
+    "description": "High-density foam roller for muscle recovery and myofascial release.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 167
+  },
+  {
+    "title": "Rogue Fitness Barbell",
+    "price": 299,
+    "description": "Professional-grade barbell with knurled grip and durable construction.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 23
+  },
+  {
+    "title": "ASICS Gel-Kayano 29 Running Shoes",
+    "price": 160,
+    "description": "Stability running shoes with GEL cushioning and advanced support.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 89
+  },
+  {
+    "title": "Spalding NBA Street Basketball",
+    "price": 39,
+    "description": "Official size basketball with composite leather for outdoor play.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 145
+  },
+  {
+    "title": "Franklin Sports MLB Baseball",
+    "price": 19,
+    "description": "Official league baseball with cork and rubber core for authentic play.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1587174486073-ae3f4e4c3e0d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 178
+  },
+  {
+    "title": "HEAD Ti.S6 Tennis Racket",
+    "price": 179,
+    "description": "Lightweight titanium tennis racket with large sweet spot for beginners.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 67
+  },
+  {
+    "title": "Callaway Chrome Soft Golf Balls",
+    "price": 49,
+    "description": "Premium golf balls with ultra-low compression for maximum distance.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 134
+  },
+  {
+    "title": "Smith Optics PivLock V90 Snow Goggles",
+    "price": 149,
+    "description": "Versatile snow goggles with quick lens change system and fog protection.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 78
+  },
+  {
+    "title": "Lululemon Metal Vent Tech Short Sleeve Shirt",
+    "price": 68,
+    "description": "Breathable running shirt with moisture-wicking fabric and reflective details.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1506629905607-0b5b8b5b2b5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 156
+  },
+  {
+    "title": "Under Armour HeatGear Compression Leggings",
+    "price": 39,
+    "description": "Compression leggings with moisture transport and anti-odor technology.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 189
+  },
+  {
+    "title": "Nike Pro HyperWarm Gloves",
+    "price": 29,
+    "description": "Thermal gloves with touchscreen compatibility for cold weather activities.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 203
+  },
+  {
+    "title": "Adidas Adizero Pro Soccer Cleats",
+    "price": 199,
+    "description": "Professional soccer cleats with lightweight design and superior traction.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Wilson NFL Football",
+    "price": 29,
+    "description": "Official size football with composite leather for backyard games.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 145
+  },
+  {
+    "title": "Babolat Boost Drive Tennis Racket",
+    "price": 149,
+    "description": "Beginner-friendly tennis racket with oversized head and comfortable grip.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 89
+  },
+  {
+    "title": "Titleist TruFeel Golf Balls",
+    "price": 35,
+    "description": "Premium golf balls designed for moderate swing speeds with excellent feel.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 167
+  },
+  {
+    "title": "Burton Custom Snowboard",
+    "price": 599,
+    "description": "All-mountain snowboard with camber profile for versatile riding.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 23
+  },
+  {
+    "title": "Gaiam Essentials Yoga Mat",
+    "price": 29,
+    "description": "Eco-friendly yoga mat with natural rubber and excellent grip.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 178
+  },
+  {
+    "title": "PowerBlock Elite Adjustable Dumbbells",
+    "price": 499,
+    "description": "Compact adjustable dumbbells with selectorized weight system.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 34
+  },
+  {
+    "title": "Yeti Hopper Flip 12 Cooler",
+    "price": 249,
+    "description": "Portable soft-sided cooler with excellent insulation and durability.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 89
+  },
+  {
+    "title": "Big Agnes Copper Spur HV UL2 Tent",
+    "price": 449,
+    "description": "Ultralight backpacking tent with excellent weather protection.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 45
+  },
+  {
+    "title": "Sea to Summit Ultra-Sil Dry Sack",
+    "price": 24,
+    "description": "Waterproof dry sack for keeping gear dry in wet conditions.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 156
+  },
+  {
+    "title": "Leki Micro Vario Carbon Trekking Poles",
+    "price": 199,
+    "description": "Carbon fiber trekking poles with adjustable length and comfortable grips.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 67
+  },
+  {
+    "title": "Snow Peak GigaPower Stove",
+    "price": 149,
+    "description": "High-performance camping stove with wind protection and fast boil times.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 34
+  },
+  {
+    "title": "Garmin GPSMAP 66i Handheld GPS",
+    "price": 599,
+    "description": "Rugged handheld GPS with inReach satellite communication.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 23
+  },
+  {
+    "title": "GSI Outdoors Glacier Stainless Steel Mug",
+    "price": 19,
+    "description": "Durable stainless steel mug perfect for camping and outdoor use.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 189
+  },
+  {
+    "title": "Arc'teryx Squamish Hoody",
+    "price": 149,
+    "description": "Versatile fleece hoody for layering in variable weather conditions.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1506629905607-0b5b8b5b2b5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 78
+  },
+  {
+    "title": "Salomon Quest 4D 3 GTX Hiking Boots",
+    "price": 199,
+    "description": "GORE-TEX waterproof hiking boots with advanced cushioning and support.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 56
+  },
+  {
+    "title": "Gregory Baltoro 75 Backpack",
+    "price": 299,
+    "description": "Large capacity backpack with excellent suspension for long-distance hiking.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 34
+  },
+  {
+    "title": "Nalgene Wide Mouth Water Bottle",
+    "price": 15,
+    "description": "Durable BPA-free water bottle with wide mouth for easy filling and cleaning.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 245
+  },
+  {
+    "title": "Goal Zero Yeti 150 Portable Power Station",
+    "price": 199,
+    "description": "Solar-compatible portable power station for charging devices in the field.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 45
+  },
+  {
+    "title": "MSR WhisperLite International Stove",
+    "price": 129,
+    "description": "Ultralight backpacking stove with excellent performance and reliability.",
+    "category": "outdoors",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 67
+  },
+  {
+    "title": "Polar Vantage V2 Multisport Watch",
+    "price": 499,
+    "description": "Advanced GPS watch with comprehensive training metrics and recovery tracking.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 28
+  },
+  {
+    "title": "Rumble Roller Deep Tissue Massage Roller",
+    "price": 49,
+    "description": "Firm foam roller for deep tissue massage and muscle recovery.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 134
+  },
+  {
+    "title": "Eleiko Competition Barbell",
+    "price": 399,
+    "description": "Olympic weightlifting barbell with precision engineering and durability.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.9,
+    "stock": 18
+  },
+  {
+    "title": "Saucony Triumph 20 Running Shoes",
+    "price": 150,
+    "description": "Cushioned running shoes with PWRRUN foam and responsive ride.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 89
+  },
+  {
+    "title": "Spalding TF-1000 Composite Basketball",
+    "price": 49,
+    "description": "Indoor/outdoor basketball with deep channels for superior grip.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 123
+  },
+  {
+    "title": "Rawlings Official League Baseball",
+    "price": 9,
+    "description": "Official size baseball for recreational play and training.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1587174486073-ae3f4e4c3e0d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.2,
+    "stock": 234
+  },
+  {
+    "title": "Wilson Hyper Hammer 5.3 Tennis Racket",
+    "price": 199,
+    "description": "Power-oriented tennis racket with large head size and extended length.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 56
+  },
+  {
+    "title": "Maxfli SoftFelt Golf Balls",
+    "price": 29,
+    "description": "Premium golf balls with exceptional feel and distance for moderate swing speeds.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 167
+  },
+  {
+    "title": "Anon M4 Toric Snow Goggles",
+    "price": 279,
+    "description": "Premium snow goggles with Magna-Tech quick lens change and anti-fog treatment.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 45
+  },
+  {
+    "title": "Nike Tech Fleece Joggers",
+    "price": 110,
+    "description": "Comfortable joggers with brushed fleece interior and tapered fit.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1506629905607-0b5b8b5b2b5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 145
+  },
+  {
+    "title": "Under Armour ColdGear Compression Shirt",
+    "price": 49,
+    "description": "Thermal compression shirt with moisture-wicking fabric for cold weather training.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.4,
+    "stock": 178
+  },
+  {
+    "title": "The North Face Etip Gloves",
+    "price": 45,
+    "description": "Touchscreen-compatible gloves with windproof and water-resistant design.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.3,
+    "stock": 189
+  },
+  {
+    "title": "Puma Future Z 1.3 Soccer Cleats",
+    "price": 250,
+    "description": "High-performance soccer cleats with PWRRUN foam and advanced traction.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 67
+  },
+  {
+    "title": "Wilson GST Football",
+    "price": 39,
+    "description": "Game-grade football with composite leather and improved grip.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 123
+  },
+  {
+    "title": "Prince Textreme Tour 100 Tennis Racket",
+    "price": 229,
+    "description": "Professional tennis racket with Textreme technology for power and control.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 45
+  },
+  {
+    "title": "Srixon Q-Star Tour Golf Balls",
+    "price": 39,
+    "description": "Tour-performance golf balls with urethane cover for spin and control.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.5,
+    "stock": 134
+  },
+  {
+    "title": "Lib Tech TRS Snowboard",
+    "price": 499,
+    "description": "All-terrain snowboard with C2x contour for versatile riding.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.6,
+    "stock": 28
+  },
+  {
+    "title": "Jade Yoga Harmony Mat",
+    "price": 79,
+    "description": "Premium yoga mat with natural rubber and superior cushioning.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.7,
+    "stock": 156
+  },
+  {
+    "title": "Bowflex SelectTech 1090 Adjustable Dumbbells",
+    "price": 599,
+    "description": "Heavy-duty adjustable dumbbells up to 90 pounds each for serious training.",
+    "category": "sports",
+    "images": [
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "rating": 4.8,
+    "stock": 23
+  }
+]

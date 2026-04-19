@@ -8,12 +8,13 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 // Create the Auth Context
 const AuthContext = createContext();
 
 // Base URL for API requests
-const API_BASE_URL = "https://shop-smart-e-commerce.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 // AuthProvider component to wrap your app
 export const AuthProvider = ({ children }) => {
@@ -35,33 +36,60 @@ export const AuthProvider = ({ children }) => {
   // Comprehensive authentication check function
   const checkAuthStatus = useCallback(() => {
     setIsAuthLoading(true);
+    let isAuth = false;
+    let validToken = null;
+    
     try {
       // Check multiple sources to determine auth status
       const token =
         localStorage.getItem("token") || sessionStorage.getItem("token");
-      const isLoggedInFlag = localStorage.getItem("isAuthenticated") === "true";
-      const userData = localStorage.getItem("user");
-
-      // Consider user authenticated if any of these are true
-      const authenticated = !!(token || isLoggedInFlag || userData);
-
-      setIsAuthenticated(authenticated);
-
-      if (userData) {
+        
+      if (token) {
         try {
-          const parsedUserData = JSON.parse(userData);
-          setUser(parsedUserData);
-
-          // Set authorization header for future requests
-          if (token) {
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          const decodedToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000;
+          
+          if (decodedToken.exp && decodedToken.exp > currentTime) {
+            isAuth = true;
+            validToken = token;
+          } else {
+            console.warn("Token expired");
+            localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
+            localStorage.removeItem("isAuthenticated");
+            localStorage.removeItem("user");
           }
         } catch (error) {
-          console.error("Error parsing user data:", error);
-          // Clear invalid data
+          console.error("Invalid token format");
+          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
+          localStorage.removeItem("isAuthenticated");
           localStorage.removeItem("user");
-          setUser(null);
         }
+      }
+
+      setIsAuthenticated(isAuth);
+
+      if (isAuth) {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          try {
+            const parsedUserData = JSON.parse(userData);
+            setUser(parsedUserData);
+
+            // Set authorization header for future requests
+            if (validToken) {
+              axios.defaults.headers.common["Authorization"] = `Bearer ${validToken}`;
+            }
+          } catch (error) {
+            console.error("Error parsing user data:", error);
+            // Clear invalid data
+            localStorage.removeItem("user");
+            setUser(null);
+          }
+        }
+      } else {
+        setUser(null);
       }
     } catch (error) {
       console.error("Error checking auth status:", error);
@@ -71,8 +99,8 @@ export const AuthProvider = ({ children }) => {
       setIsAuthLoading(false);
     }
 
-    return isAuthenticated;
-  }, [isAuthenticated]);
+    return isAuth;
+  }, []);
 
   // Handle login
   const login = useCallback(

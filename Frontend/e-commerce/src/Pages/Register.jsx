@@ -22,7 +22,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "https://shop-smart-e-commerce.onrender.com/auth/register",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
         {
           username: `${firstName} ${lastName}`,
           email,

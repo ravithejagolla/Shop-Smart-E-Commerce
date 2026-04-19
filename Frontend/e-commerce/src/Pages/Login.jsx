@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +10,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [redirectPath, setRedirectPath] = useState("/");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   // Check for redirect path on component mount
   useEffect(() => {
@@ -25,50 +26,16 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post(
-        "https://shop-smart-e-commerce.onrender.com/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const result = await login(email, password, rememberMe);
 
-      // Extract token and user data from response
-      const { accessToken, user } = response.data;
-
-      // Store token based on remember me preference
-      if (rememberMe) {
-        localStorage.setItem("token", accessToken);
-      } else {
-        sessionStorage.setItem("token", accessToken);
+      if (!result.success) {
+        setError(result.message);
+        setIsLoading(false);
       }
-
-      // Store user data in localStorage for use across the app
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("isAuthenticated", "true");
-
-      // Set token for future axios requests
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-
+      // If success, AuthContext will handle navigation and state updates
+    } catch (err) {
       setIsLoading(false);
-
-      // Navigate to the redirect path (if it exists) and then clear it
-      const redirectTo = localStorage.getItem("redirectAfterLogin") || "/";
-      const shouldProceedToCheckout = redirectTo === "/cart";
-      localStorage.removeItem("redirectAfterLogin");
-
-      // If user was redirected from cart, set a flag to trigger immediate checkout
-      if (shouldProceedToCheckout) {
-        localStorage.setItem("proceedToPayment", "true");
-      }
-
-      navigate(redirectTo);
-    } catch (error) {
-      setIsLoading(false);
-      const message =
-        error.response?.data?.message ||
-        "Login failed. Please check your credentials.";
-      setError(message);
+      setError("An unexpected error occurred during login.");
     }
   };
 

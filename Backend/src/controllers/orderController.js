@@ -5,7 +5,7 @@ import { Product } from "../models/product.js";
 export const createOrder = async (req, res) => {
   const { products } = req.body;
   try {
-    const userId = req.user.userId;// Assuming the user is authenticated
+    const userId = req.user.id || req.user.userId; // Assuming the user is authenticated
     console.log(userId)
     const orderProducts = [];
 

@@ -9,8 +9,8 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("/orders/user", {
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/orders/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(res.data);

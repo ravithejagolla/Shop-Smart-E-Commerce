@@ -30,7 +30,7 @@ export const Wishlist = () => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/addToWishlist`,
             { productId: product.id },
             {
               headers: {
@@ -86,7 +86,7 @@ export const Wishlist = () => {
       if (token) {
         try {
           await axios.post(
-            "https://shop-smart-e-commerce.onrender.com/product/removeFromWishlist",
+            `${import.meta.env.VITE_BACKEND_URL}/product/removeFromWishlist`,
             { productId },
             {
               headers: {

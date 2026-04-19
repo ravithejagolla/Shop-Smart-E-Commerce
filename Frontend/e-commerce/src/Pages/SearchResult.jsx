@@ -14,7 +14,7 @@ const SearchResultsPage = () => {
     const fetchSearchResults = async () => {
       try {
         const response = await fetch(
-          `https://shop-smart-e-commerce.onrender.com/product/search?keyword=${keyword}`
+          `${import.meta.env.VITE_BACKEND_URL}/product/search?keyword=${keyword}`
         );
         const data = await response.json();
         console.log("Fetched search products:", data.products);

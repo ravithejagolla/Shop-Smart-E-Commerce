@@ -67,7 +67,7 @@ export const ProductCard = ({ product }) => {
 
       // Add to backend wishlist
       const response = await axios.post(
-        "https://shop-smart-e-commerce.onrender.com/product/addToWishlist",
+        `${import.meta.env.VITE_BACKEND_URL}/product/addToWishlist`,
         { productId: product.id },
         {
           headers: {

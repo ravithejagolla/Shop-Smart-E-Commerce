@@ -310,16 +310,6 @@ export const PriceDetails = () => {
     }
   }, [location.pathname, isAuthenticated, isAuthLoading]);
 
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
   // Handle checkout process - this is only for logged-in users
   const initiatePayment = async () => {
     // Validate cart
@@ -332,83 +322,31 @@ export const PriceDetails = () => {
     setMessage("");
 
     try {
-      // Load Razorpay SDK
-      const res = await loadScript(
-        "https://checkout.razorpay.com/v1/checkout.js"
-      );
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+      
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/payment/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ cart })
+      });
 
-      if (!res) {
-        setMessage(
-          "Payment gateway failed to load. Please check your connection."
-        );
-        setIsProcessing(false);
-        return;
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to create checkout session");
       }
 
-      // Get user data (if available)
-      const userData = localStorage.getItem("user")
-        ? JSON.parse(localStorage.getItem("user"))
-        : {};
-
-      // Configure Razorpay
-      const options = {
-        key: "rzp_test_ksA7ruCXgK9Zua",
-        amount: (totalProductPrice + deliveryCharge) * 100, // in paisa
-        currency: "INR",
-        name: "RetailCanvas",
-        description: `Payment for ${cart.length} item${
-          cart.length > 1 ? "s" : ""
-        }`,
-        image:
-          "https://thewrightfit.netlify.app/assets/The%20Wright%20Fit-logos.jpeg",
-        handler: function (response) {
-          handlePaymentSuccess(response);
-        },
-        prefill: {
-          name: userData.username || "",
-          email: userData.email || "",
-          contact: userData.phone || "",
-        },
-        notes: {
-          address: "RetailCanvas Headquarters",
-        },
-        theme: {
-          color: "#4F46E5", // Indigo color
-        },
-        modal: {
-          ondismiss: function () {
-            setIsProcessing(false);
-          },
-        },
-      };
-
-      // Create Razorpay instance and open payment modal
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
     } catch (error) {
       console.error("Payment error:", error);
-      setMessage("Something went wrong with the payment. Please try again.");
-      setIsProcessing(false);
-    }
-  };
-
-  // Handle successful payment
-  const handlePaymentSuccess = (response) => {
-    try {
-      console.log("Payment successful:", response);
-
-      // Clear cart
-      if (cartdispatch) {
-        cartdispatch({ type: "CLEAR_CART" });
-      }
-
-      // Navigate to success page
-      navigate("/order-success");
-    } catch (error) {
-      console.error("Error processing successful payment:", error);
-      setMessage(
-        "Payment was successful, but we couldn't process your order. Please contact support."
-      );
+      setMessage(error.message || "Something went wrong with the payment. Please try again.");
       setIsProcessing(false);
     }
   };

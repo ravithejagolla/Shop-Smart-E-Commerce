@@ -1,13 +1,13 @@
 import axios from 'axios'
-const baseurl="https://shop-smart-e-commerce.onrender.com/product"
+const baseurl = `${import.meta.env.VITE_BACKEND_URL}/product`
 
-export const getAllitems=async()=>{
-    const url=`${baseurl}/getAllProduct`
-    try{
-        const {data}=await axios.get(url)
+export const getAllitems = async () => {
+    const url = `${baseurl}/getAllProduct`
+    try {
+        const { data } = await axios.get(url)
         console.log(data.productFetch)
         return data.productFetch
-    }catch(e){
+    } catch (e) {
         return e
     }
 }

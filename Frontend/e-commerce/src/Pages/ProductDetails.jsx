@@ -27,7 +27,7 @@ function ProductDetails() {
       try {
         // Replace with your actual API endpoint
         const response = await axios.get(
-          `https://shop-smart-e-commerce.onrender.com/product/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/product/${id}`
         );
         if (response.data) {
           setProduct(response.data);
@@ -53,7 +53,7 @@ function ProductDetails() {
 
     try {
       const response = await axios.get(
-        `https://shop-smart-e-commerce.onrender.com/product/category/${category}`
+        `${import.meta.env.VITE_BACKEND_URL}/product/category/${category}`
       );
 
       if (response.data) {

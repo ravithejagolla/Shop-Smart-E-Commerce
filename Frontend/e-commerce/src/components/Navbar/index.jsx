@@ -1,7 +1,7 @@
-// Updated Navbar.jsx to match screenshot design
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import useCart from "../../context/cart-context";
+import { useAuth } from "../../context/AuthContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -9,11 +9,12 @@ export const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
 
   // Get cart state from context
   const { cart } = useCart();
+  
+  // Get auth state from context
+  const { isAuthenticated: isLoggedIn, user, logout: contextLogout } = useAuth();
 
   // Calculate cart item count correctly, handling undefined cart
   const cartItemCount = cart && Array.isArray(cart) ? cart.length : 0;
@@ -22,10 +23,9 @@ export const Navbar = () => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const wishlistCount = wishlistItems?.length || 0;
 
-  // Load wishlist and check login status when component mounts or route changes
+  // Load wishlist when component mounts or route changes
   useEffect(() => {
     loadWishlist();
-    checkLoginStatus();
   }, [location.pathname]); // Refresh when navigation occurs
 
   // Load wishlist items from localStorage
@@ -41,36 +41,13 @@ export const Navbar = () => {
     }
   };
 
-  // Check login status
-  const checkLoginStatus = () => {
-    const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-      // Get user data from localStorage or API
-      try {
-        const userData = localStorage.getItem("user");
-        if (userData) {
-          setUser(JSON.parse(userData));
-        } else {
-          // Fetch user profile from API if not in localStorage
-          fetchUserProfile(token);
-        }
-      } catch (error) {
-        console.error("Error loading user data:", error);
-      }
-    } else {
-      setIsLoggedIn(false);
-      setUser(null);
-    }
-  };
-
   // Get user initials
   const getUserInitials = () => {
-    if (!user || !user.username) return "U";
+    if (!user || (!user.username && !user.name)) return "U";
 
+    const displayName = user.username || user.name;
     // Split the username by spaces to get names
-    const nameParts = user.username.split(" ");
+    const nameParts = displayName.split(" ");
 
     if (nameParts.length === 1) {
       // If only one name, return first letter
@@ -83,53 +60,18 @@ export const Navbar = () => {
     }
   };
 
-  // Fetch user profile
-  const fetchUserProfile = async (token) => {
-    try {
-      const response = await fetch(
-        "https://shop-smart-e-commerce.onrender.com/user/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.ok) {
-        const userData = await response.json();
-        setUser(userData.message);
-        // Store in localStorage for future use
-        localStorage.setItem("user", JSON.stringify(userData.message));
-      } else {
-        // If token is invalid, log user out
-        handleLogout();
-      }
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-    }
-  };
-
   // Handle logout
   const handleLogout = () => {
-    // Clear authentication data
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("user");
-
-    // Clear wishlist
+    // Clear wishlist locally
     localStorage.removeItem("wishlist");
     setWishlistItems([]);
-
-    // Update state
-    setIsLoggedIn(false);
-    setUser(null);
     setIsProfileDropdownOpen(false);
+
+    // Context handles the rest
+    contextLogout();
 
     // Show confirmation
     alert("You have been logged out successfully.");
-
-    // Navigate to home
-    navigate("/");
   };
 
   // Check if user is on the specified path
