@@ -8,8 +8,8 @@ Shop Smart is an e-commerce platform that enables users to browse products, add 
 - Frontend: React
 
 ## Deployed App
-- **Backend**: https://shop-smart-e-commerce.onrender.com  (Deplyoyed on Render)
-- **Frontend**:https://shop-smart-e-commerce-app-3.netlify.app/ (Deployed on Netlify)
+- **Backend**: https://shop-smart-e-commerce-vh25.onrender.com  (Deplyoyed on Render)
+- **Frontend**:https://shop-smart-commerce.netlify.app/ (Deployed on Netlify)
 
 
 ## Directory Structure
